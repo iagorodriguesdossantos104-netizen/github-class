@@ -1,0 +1,16 @@
+{
+  "s1": "Você aperta o interruptor e a luz acende. Parece que basta um fio, de poste em poste, até a sua casa.",
+  "s2": "Só que um galho encosta no fio: curto-circuito! A corrente dispara e pode queimar a rede.",
+  "s3": "Por isso, a subestação tem um disjuntor, que sente o excesso de corrente e desliga a linha na hora.",
+  "s4": "Mas o bairro inteiro apagou, e o galho já caiu! A maioria das falhas é passageira assim.",
+  "s5": "Então entra o religador automático: ele desliga, espera uns segundos e religa sozinho.",
+  "s6": "Defeito sumiu, luz de volta, sem ninguém sair de casa.",
+  "s7": "Mas, se uma árvore cai sobre o fio, a falha é permanente, e o religador desiste.",
+  "s8": "Todo mundo depois dele fica sem luz, mesmo longe da árvore.",
+  "s9": "Por isso, chaves automáticas dividem a linha em trechos. Elas abrem dos dois lados do defeito, e o começo volta a ligar.",
+  "s10": "Só que as casas depois do trecho continuam no escuro, com os fios inteiros.",
+  "s11": "Então, uma chave normalmente aberta se fecha e liga essas casas a um circuito vizinho.",
+  "s12": "E quem coordena tudo? Sensores medem a corrente e avisam, por rádio ou celular, o centro de operação.",
+  "s13": "Um software escolhe as manobras e devolve a energia em poucos minutos: é o sélf rílin.",
+  "s14": "A equipe só vai até a árvore. Pronto: agora você entende como a rede dos postes se protege sozinha."
+}
