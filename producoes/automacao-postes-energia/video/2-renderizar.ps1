@@ -14,7 +14,7 @@ function Step($name, [scriptblock]$cmd) {
   if ($LASTEXITCODE -ne 0) { Mark "ERRO $name (codigo $LASTEXITCODE)"; Stop-Transcript | Out-Null; Read-Host "Deu erro. Pode fechar esta janela"; exit 1 }
   Mark "OK $name"
 }
-Step "render" { npx remotion render AutomacaoPostes out/automacao-postes-raw.mp4 --gl=angle --concurrency=4 --crf=17 }
+Step "render" { npx remotion render AutomacaoPostes out/automacao-postes-raw.mp4 --gl=angle --concurrency=2 --crf=17 }
 Step "loudnorm" { & $PY scripts/loudnorm.py out/automacao-postes-raw.mp4 out/automacao-postes.mp4 }
 Step "ffprobe" { ffprobe -v error -show_entries stream=codec_name,width,height,r_frame_rate,nb_frames -show_entries format=duration out/automacao-postes.mp4 | Tee-Object -FilePath logs\ffprobe.txt }
 Step "audiocheck" { & $PY scripts/audiocheck.py out/automacao-postes.mp4 | Tee-Object -FilePath logs\audiocheck.txt }
