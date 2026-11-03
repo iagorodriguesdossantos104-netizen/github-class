@@ -266,7 +266,7 @@ const EnergyFlow: React.FC<{ frame: number; sagC: number }> = ({ frame, sagC }) 
   }, [frame, sagC]);
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, PARTICLES.length]} frustumCulled={false}>
-      <sphereGeometry args={[0.075, 8, 6]} />
+      <sphereGeometry args={[0.058, 8, 6]} />
       <meshBasicMaterial color={PALETTE.energy} toneMapped={false} />
     </instancedMesh>
   );

@@ -53,7 +53,7 @@ const P = {
   branchSpan: orbit([-1.4, 3.8, 0.5], 11, -30, 8),
   substation: orbit([-9.6, 1.4, 0.6], 9, -35, 12),
   streetDark: orbit([1, 2, -0.5], 32, -52, 24),
-  branchGround: orbit([-1.4, 1.6, 1.2], 10, -25, 10),
+  branchGround: orbit([-1.3, 0.4, 0.9], 8, -70, 38),
   recloser: orbit([-3, 3.6, 0.3], 7, -25, 8),
   lineRight: orbit([2, 2.5, 0], 24, -48, 18),
   treeSpan: orbit([2, 3.6, 0.6], 13, -30, 10),
@@ -61,15 +61,15 @@ const P = {
   streetHigh: orbit([1, 2, -0.5], 34, -55, 26),
   house7: orbit([6, 1.4, -1.8], 10, -20, 10),
   sideHigh: orbit([1, 2.5, 0], 30, -50, 30),
-  switches: orbit([2, 4.4, 0], 9, -25, 8),
+  switches: orbit([2, 4.2, -0.3], 11, -155, 28),
   segD: orbit([5, 3, -0.5], 13, -30, 12),
   tie: orbit([7, 4.4, 0], 8, -30, 8),
   tieWide: orbit([8, 3, 0], 19, -42, 14),
-  codWide: orbit([0, 2.5, -5], 36, -40, 30),
-  codWide2: orbit([0, 2.5, -5], 36, -55, 26),
-  codScreen: orbit([-1, 1.25, -10.8], 5, -8, 4),
+  codWide: orbit([1, 2, -6], 42, -30, 30),
+  codWide2: orbit([1, 2, -6], 42, -42, 27),
+  codScreen: orbit([-1, 1.25, -10.8], 7.5, -8, 5),
   streetFix: orbit([1, 2, -0.5], 28, -45, 22),
-  final: orbit([1, 2, -2], 42, -52, 26),
+  final: orbit([0.5, 1.5, -3], 52, -50, 30),
 };
 
 // Objetos persistentes (ids estáveis). Equipamentos aparecem na cena em que são instalados e ficam.
@@ -171,7 +171,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(3).durationInFrames,
     voKey: "s4",
     narration: "Mas o bairro inteiro apagou, e o galho já caiu! A maioria das falhas é passageira assim.",
-    camera: { projection: "perspective", movement: "dolly-out", keys: [key(0, orbit([-6, 2.5, 0], 18, -40, 16)), key(s(2.0), P.streetDark, "soft"), key(s(3.2), orbit([1, 2, -0.5], 31, -48, 23), "linear"), key(s(5.7), P.branchGround, "soft"), key(end(3), orbit([-1.4, 1.6, 1.2], 9.5, -18, 10), "linear")] },
+    camera: { projection: "perspective", movement: "dolly-out", keys: [key(0, orbit([-6, 2.5, 0], 18, -40, 16)), key(s(2.0), P.streetDark, "soft"), key(s(3.2), orbit([1, 2, -0.5], 31, -48, 23), "linear"), key(s(5.7), P.branchGround, "soft"), key(end(3), orbit([-1.3, 0.4, 0.9], 7.5, -78, 40), "linear")] },
     objects: [...base(), o("branch", "galho", "encostado nos fios", "caído na calçada"), o("questionMarks", "interrogacoes-2d")],
     animations: [
       { type: "spring", target: "houses.question", startFrame: s(1.0), endFrame: s(2.0), from: 0, to: 1, damping: 12, unit: "0-1" },
@@ -194,7 +194,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(4).durationInFrames,
     voKey: "s5",
     narration: "Então entra o religador automático: ele desliga, espera uns segundos e religa sozinho.",
-    camera: { projection: "perspective", movement: "orbit", keys: [key(0, orbit([-1.4, 1.6, 1.2], 9.5, -18, 10)), key(s(1.2), P.recloser, "soft"), key(end(4), orbit([-3, 3.6, 0.3], 7.5, -42, 10), "linear")] },
+    camera: { projection: "perspective", movement: "orbit", keys: [key(0, orbit([-1.3, 0.4, 0.9], 7.5, -78, 40)), key(s(1.2), P.recloser, "soft"), key(end(4), orbit([-3, 3.6, 0.3], 7.5, -42, 10), "linear")] },
     objects: [...base(), o("branch", "galho", "caído na calçada"), o("recloser", "religador", "ausente", "instalado, fechado"), o("branchGhost", "galho-translucido"), o("timer2d", "contador-2d")],
     animations: [
       { type: "interpolate", target: "breaker.open", startFrame: 0, endFrame: 10, from: 1, to: 0, easing: "out", unit: "0-1" },
@@ -290,7 +290,7 @@ export const scenes: ScenePlan[] = [
     camera: {
       projection: "perspective",
       movement: "dolly-in",
-      keys: [key(0, P.house7), key(s(1.6), P.sideHigh, "soft"), key(s(3.6), orbit([1, 2.5, 0], 29, -40, 29), "linear"), key(s(4.4), P.switches, "soft"), key(s(6.3), orbit([2, 4.4, 0], 9, -35, 9), "linear"), key(end(8), P.sideHigh, "soft")],
+      keys: [key(0, P.house7), key(s(1.6), P.sideHigh, "soft"), key(s(3.6), orbit([1, 2.5, 0], 29, -40, 29), "linear"), key(s(4.4), P.switches, "soft"), key(s(6.3), orbit([2, 4.2, -0.3], 11, -168, 26), "linear"), key(end(8), P.sideHigh, "soft")],
     },
     objects: [...base(), o("recloser", "religador", "bloqueado aberto", "fechado"), o("tree", "arvore-grande", "caída sobre os fios"), o("switch1", "chave-automatica", "ausente", "aberta"), o("switch2", "chave-automatica", "ausente", "aberta"), o("segmentTint", "faixas-de-trecho-2d")],
     animations: [
@@ -384,7 +384,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(12).durationInFrames,
     voKey: "s13",
     narration: "Um software escolhe as manobras e devolve a energia em poucos minutos: é o self-healing.",
-    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, P.codWide2), key(s(1.3), P.codScreen, "soft"), key(s(4.0), orbit([-1, 1.25, -10.8], 4.6, 6, 4), "linear"), key(s(5.3), P.streetFix, "soft"), key(end(12), P.streetFix)] },
+    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, P.codWide2), key(s(1.3), P.codScreen, "soft"), key(s(4.0), orbit([-1, 1.25, -10.8], 7, 6, 5), "linear"), key(s(5.3), P.streetFix, "soft"), key(end(12), P.streetFix)] },
     objects: [...base(), o("recloser", "religador", "fechado"), o("tree", "arvore-grande", "caída sobre os fios"), o("switch1", "chave-automatica", "aberta"), o("switch2", "chave-automatica", "aberta"), o("tieSwitch", "chave-NA", "fechada"), o("neighborLine", "circuito-vizinho"), o("neighborSub", "subestacao-vizinha-silhueta"), o("cod", "centro-de-operacao", "telão com mapa"), o("codMap", "mapa-2d-telao"), o("clock2d", "relogio-2d")],
     animations: [
       { type: "interpolate", target: "cod.mapSteps", startFrame: W("s13", 2), endFrame: W("s13", 8), from: 0, to: 4, easing: "linear", unit: "0-1" },

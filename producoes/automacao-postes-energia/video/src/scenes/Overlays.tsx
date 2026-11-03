@@ -244,7 +244,7 @@ const ChaveNaOverlay: React.FC<SceneProps> = ({ scene }) => {
   return (
     <>
       <WorldLabel pose={pose} point={POINTS.tie} text="CHAVE NA" appear={progress(local, W("s11", 3) + 6, W("s11", 3) + 16) * (1 - progress(local, s(3.4), s(3.7)))} offset={[-200, -170]} accent={PALETTE.warning} />
-      <WorldLabel pose={pose} point={POINTS.neighbor} text={"CIRCUITO\nVIZINHO"} appear={progress(local, W("s11", 12), W("s11", 12) + 10)} offset={[-60, -240]} accent={PALETTE.positive} />
+      <WorldLabel pose={pose} point={POINTS.neighbor} text={"CIRCUITO\nVIZINHO"} appear={progress(local, W("s11", 12), W("s11", 12) + 10)} offset={[-280, -200]} accent={PALETTE.positive} />
     </>
   );
 };
@@ -252,7 +252,7 @@ const ChaveNaOverlay: React.FC<SceneProps> = ({ scene }) => {
 // ---------------------------------------------------------------- 12. comunicação
 const ComunicacaoOverlay: React.FC<SceneProps> = ({ scene }) => {
   const { local, frame } = useFrames(scene);
-  return <WorldLabel pose={cameraPoseAt(frame)} point={POINTS.cod} text={"CENTRO DE\nOPERAÇÃO"} appear={progress(local, W("s12", 15), W("s12", 15) + 10)} offset={[150, -220]} accent={PALETTE.radio} />;
+  return <WorldLabel pose={cameraPoseAt(frame)} point={POINTS.cod} text={"CENTRO DE\nOPERAÇÃO"} appear={progress(local, W("s12", 15), W("s12", 15) + 10)} offset={[200, 160]} accent={PALETTE.radio} />;
 };
 
 // ---------------------------------------------------------------- 13. software no telão
@@ -329,11 +329,11 @@ const SoftwareOverlay: React.FC<SceneProps> = ({ scene }) => {
 
 // ---------------------------------------------------------------- 14. conclusão
 const FINAL_LABELS: { p: Vec3; text: string; off: [number, number]; accent: string }[] = [
-  { p: POINTS.breaker, text: "DISJUNTOR", off: [40, 150], accent: PALETTE.info },
+  { p: POINTS.breaker, text: "DISJUNTOR", off: [170, -110], accent: PALETTE.info },
   { p: POINTS.recloser, text: "RELIGADOR", off: [-150, -170], accent: PALETTE.positive },
   { p: [2, 4.75, 0], text: "CHAVES", off: [-60, -200], accent: PALETTE.positive },
   { p: POINTS.tie, text: "CHAVE NA", off: [80, -150], accent: PALETTE.warning },
-  { p: POINTS.cod, text: "CENTRO DE\nOPERAÇÃO", off: [-120, -150], accent: PALETTE.radio },
+  { p: POINTS.cod, text: "CENTRO DE\nOPERAÇÃO", off: [-150, 130], accent: PALETTE.radio },
 ];
 
 const ConclusaoOverlay: React.FC<SceneProps> = ({ scene }) => {
