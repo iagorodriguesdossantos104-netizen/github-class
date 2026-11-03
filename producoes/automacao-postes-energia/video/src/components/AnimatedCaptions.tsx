@@ -80,7 +80,7 @@ export const AnimatedCaptions: React.FC = () => {
         alignItems: "center",
         justifyContent: "center",
         flexWrap: "wrap",
-        columnGap: 22,
+        columnGap: 0,
         opacity: enter * (1 - exit),
         scale: String(interpolate(enter, [0, 1], [0.86, 1])),
       }}
@@ -102,6 +102,7 @@ export const AnimatedCaptions: React.FC = () => {
               paintOrder: "stroke fill",
               textShadow: "0 7px 14px rgba(0,0,0,0.45)",
               display: "inline-block",
+              margin: "0 15px",
               scale: String(pop),
               translate: active ? "0px -4px" : "0px 0px",
             }}

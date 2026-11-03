@@ -56,7 +56,7 @@ const P = {
   branchGround: orbit([-1.3, 0.4, 0.9], 8, -70, 38),
   recloser: orbit([-3, 3.6, 0.3], 7, -25, 8),
   lineRight: orbit([2, 2.5, 0], 24, -48, 18),
-  treeSpan: orbit([2, 3.6, 0.6], 13, -30, 10),
+  treeSpan: orbit([2, 3.4, 0.3], 13, -150, 24),
   recloserMid: orbit([-3, 3.4, 0.3], 10, -20, 8),
   streetHigh: orbit([1, 2, -0.5], 34, -55, 26),
   house7: orbit([6, 1.4, -1.8], 10, -20, 10),
@@ -67,7 +67,7 @@ const P = {
   tieWide: orbit([8, 3, 0], 19, -42, 14),
   codWide: orbit([1, 2, -6], 42, -30, 30),
   codWide2: orbit([1, 2, -6], 42, -42, 27),
-  codScreen: orbit([-1, 1.25, -10.8], 7.5, -8, 5),
+  codScreen: orbit([-1, 1.25, -10.8], 12, 6, 18),
   streetFix: orbit([1, 2, -0.5], 28, -45, 22),
   final: orbit([0.5, 1.5, -3], 52, -50, 30),
 };
@@ -239,7 +239,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(6).durationInFrames,
     voKey: "s7",
     narration: "Mas, se uma árvore cai sobre o fio, a falha é permanente, e o religador desiste.",
-    camera: { projection: "perspective", movement: "tracking", keys: [key(0, P.lineRight), key(s(1.4), P.treeSpan, "soft"), key(s(3.3), orbit([2, 3.6, 0.6], 12, -22, 9), "linear"), key(s(3.7), P.recloserMid, "soft"), key(end(6), orbit([-3, 3.4, 0.3], 9.5, -10, 8), "linear")] },
+    camera: { projection: "perspective", movement: "tracking", keys: [key(0, P.lineRight), key(s(1.4), P.treeSpan, "soft"), key(s(3.3), orbit([2, 3.4, 0.3], 12, -140, 22), "linear"), key(s(3.7), P.recloserMid, "soft"), key(end(6), orbit([-3, 3.4, 0.3], 9.5, -10, 8), "linear")] },
     objects: [...base(), o("recloser", "religador", "fechado", "bloqueado aberto"), o("tree", "arvore-grande", "em pé", "caída sobre os fios"), o("arcFault2", "faiscas"), o("attempts2d", "contador-tentativas-2d")],
     animations: [
       { type: "interpolate", target: "tree.fall", startFrame: W("s7", 3), endFrame: W("s7", 4) + 10, from: 0, to: 1, easing: "in", unit: "0-1" },
@@ -384,7 +384,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(12).durationInFrames,
     voKey: "s13",
     narration: "Um software escolhe as manobras e devolve a energia em poucos minutos: é o self-healing.",
-    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, P.codWide2), key(s(1.3), P.codScreen, "soft"), key(s(4.0), orbit([-1, 1.25, -10.8], 7, 6, 5), "linear"), key(s(5.3), P.streetFix, "soft"), key(end(12), P.streetFix)] },
+    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, P.codWide2), key(s(1.3), P.codScreen, "soft"), key(s(4.0), orbit([-1, 1.25, -10.8], 11.5, 8, 18), "linear"), key(s(5.3), P.streetFix, "soft"), key(end(12), P.streetFix)] },
     objects: [...base(), o("recloser", "religador", "fechado"), o("tree", "arvore-grande", "caída sobre os fios"), o("switch1", "chave-automatica", "aberta"), o("switch2", "chave-automatica", "aberta"), o("tieSwitch", "chave-NA", "fechada"), o("neighborLine", "circuito-vizinho"), o("neighborSub", "subestacao-vizinha-silhueta"), o("cod", "centro-de-operacao", "telão com mapa"), o("codMap", "mapa-2d-telao"), o("clock2d", "relogio-2d")],
     animations: [
       { type: "interpolate", target: "cod.mapSteps", startFrame: W("s13", 2), endFrame: W("s13", 8), from: 0, to: 4, easing: "linear", unit: "0-1" },
@@ -403,7 +403,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(13).durationInFrames,
     voKey: "s14",
     narration: "A equipe só vai até a árvore. Pronto: agora você entende como a rede dos postes se protege sozinha.",
-    camera: { projection: "perspective", movement: "dolly-out", keys: [key(0, P.streetFix), key(s(1.0), orbit([2, 2.4, 1.5], 16, -30, 14), "soft"), key(s(3.0), orbit([2.5, 2.6, 1.5], 15, -38, 15), "linear"), key(s(7.7), P.final, "soft"), key(end(13), P.final)] },
+    camera: { projection: "perspective", movement: "dolly-out", keys: [key(0, P.streetFix), key(s(1.0), orbit([2, 2.4, 0.5], 21, -35, 22), "soft"), key(s(3.0), orbit([2.5, 2.6, 0.5], 20, -42, 22), "linear"), key(s(7.7), P.final, "soft"), key(end(13), P.final)] },
     objects: [...base(), o("recloser", "religador", "fechado"), o("tree", "arvore-grande", "caída sobre os fios"), o("switch1", "chave-automatica", "aberta"), o("switch2", "chave-automatica", "aberta"), o("tieSwitch", "chave-NA", "fechada"), o("neighborLine", "circuito-vizinho"), o("neighborSub", "subestacao-vizinha-silhueta"), o("cod", "centro-de-operacao", "telão com mapa"), o("truck", "caminhao-cesto", "fora de cena", "no trecho C, cesto erguido"), o("finalLabels", "rotulos-3d")],
     animations: [
       { type: "interpolate", target: "truck.x", startFrame: 5, endFrame: 70, from: 12, to: 2, easing: "out", unit: "u3d" },

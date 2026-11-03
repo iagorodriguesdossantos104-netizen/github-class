@@ -244,7 +244,7 @@ const ChaveNaOverlay: React.FC<SceneProps> = ({ scene }) => {
   return (
     <>
       <WorldLabel pose={pose} point={POINTS.tie} text="CHAVE NA" appear={progress(local, W("s11", 3) + 6, W("s11", 3) + 16) * (1 - progress(local, s(3.4), s(3.7)))} offset={[-200, -170]} accent={PALETTE.warning} />
-      <WorldLabel pose={pose} point={POINTS.neighbor} text={"CIRCUITO\nVIZINHO"} appear={progress(local, W("s11", 12), W("s11", 12) + 10)} offset={[-280, -200]} accent={PALETTE.positive} />
+      <WorldLabel pose={pose} point={POINTS.neighbor} text={"CIRCUITO\nVIZINHO"} appear={progress(local, W("s11", 12), W("s11", 12) + 10)} offset={[-230, 170]} accent={PALETTE.positive} />
     </>
   );
 };
