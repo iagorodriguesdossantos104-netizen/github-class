@@ -68,12 +68,6 @@ export const HOUSES = [
 ];
 const HOUSE_Z = -2.4;
 
-const DEVICE_BOXES: { id: string; x: number }[] = [
-  { id: "recloser", x: -3 },
-  { id: "switch1", x: 1 },
-  { id: "switch2", x: 3 },
-  { id: "tieSwitch", x: 7 },
-];
 export const deviceAntenna = (x: number): Vec3 => [x, 2.55, 0.32];
 
 // ------------------------------------------------------------------ helpers
