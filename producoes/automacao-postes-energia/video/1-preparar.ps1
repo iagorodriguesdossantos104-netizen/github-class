@@ -1,6 +1,9 @@
 ﻿# Instala dependências, gera narração/efeitos/trilha, renderiza frames de revisão
 # e depois fica aguardando pedidos simples em logs\pedido.txt ("stills 0 120 ...", "render", "sair").
 $ErrorActionPreference = "Continue"
+# Desliga o "modo de seleção" do console: um clique na janela não pausa mais o script.
+Add-Type -Namespace W -Name C -MemberDefinition '[DllImport("kernel32.dll")] public static extern IntPtr GetStdHandle(int h); [DllImport("kernel32.dll")] public static extern bool GetConsoleMode(IntPtr h, out uint m); [DllImport("kernel32.dll")] public static extern bool SetConsoleMode(IntPtr h, uint m);' -ErrorAction SilentlyContinue
+try { $h = [W.C]::GetStdHandle(-10); $m = 0; [void][W.C]::GetConsoleMode($h, [ref]$m); [void][W.C]::SetConsoleMode($h, (($m -band (-bnot 0x40)) -bor 0x80)) } catch {}
 Set-Location $PSScriptRoot
 New-Item -ItemType Directory -Force logs | Out-Null
 "INICIO $(Get-Date -Format s)" | Set-Content -Encoding utf8 logs\status.txt
