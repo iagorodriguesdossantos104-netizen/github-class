@@ -63,17 +63,17 @@ const P = {
   beachClose: orbit([0, 1, 1.5], 12, 20, 12),        // banhistas ao meio-dia
   beachWide: orbit([0, 4, 0], 34, 25, 14),           // praia + céu (sem o ozônio no quadro)
   skyColumn: orbit([2, 10, -2], 46, 18, 8),          // praia embaixo, faixa de ozônio em cima: a coluna inteira
-  ozoneBand: orbit([2, 14.5, -2], 22, 25, 6),        // a faixa de ozônio de perto
+  ozoneBand: orbit([2, 14.5, -2], 26, 25, -14),      // a faixa vista de baixo, como um teto
   rays: orbit([3, 8, -2], 40, 30, 10),               // raios descendo do Sol
   globe: orbit([0, 60, -80], 75, 40, 12),            // planeta com dia e noite
   skin: orbit([-30, 1.2, 0], 15, 25, 18),            // bloco de pele em corte
-  skinDNA: orbit([-30, 1.6, 1.0], 4.5, 20, 10),      // núcleo + DNA
+  skinDNA: orbit([-30, 1.6, 2.6], 4.5, 20, 10),      // núcleo ampliado + DNA (na frente do bloco)
   beachBurn: orbit([0, 0.8, 1.5], 9, 35, 18),        // banhista deitado
   eye: orbit([-30, 1.5, 14], 8.5, 15, 6),            // olho de frente
   house: orbit([-6.5, 2, -1], 16, 20, 12),           // casa em corte
   nature: orbit([3, 0, 1], 18, 35, 14),              // folhas, solo e o corte do mar
   seaCut: orbit([5.5, -1.2, 4], 10, 5, 6),           // plâncton no corte do mar
-  night: orbit([-6, 3, -2], 30, 20, 12),             // praia à noite + hospital
+  night: orbit([-1.5, 2, -2], 26, 15, 12),           // praia à noite + hospital
   final: orbit([1, 9, -1], 48, 28, 12),
 };
 
@@ -99,7 +99,8 @@ export const scenes: ScenePlan[] = [
       lin("ozone.amount", W("s1", 9), W("s1", 9) + 14, 1, 0, "in"),                 // a faixa pisca e se desfaz em partículas
       lin("ozone.dissolve", W("s1", 9), W("s1", 9) + 24, 0, 1, "out"),
       spr("timer.show", W("s1", 11), 0, 1, 12),
-      lin("timer.min", W("s1", 11), W("s1", 11) + 1, 0, 0, "linear", "px"),
+      lin("label.band", W("s1", 4), W("s1", 4) + 12, 0, 1, "out"),
+      lin("label.band", W("s1", 9) - 4, W("s1", 9) + 4, 1, 0, "in"),
     ],
     badges: [{ text: "SEM OZÔNIO POR 10 MIN", variant: "warning", icon: "?", appearAt: W("s1", 9), disappearAt: end(0) - 4 }],
     highlights: ["PRAIA", "OZÔNIO", "SOME", "DEZ", "MINUTOS"],
@@ -113,7 +114,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(1).durationInFrames,
     voKey: "s2",
     narration: "Ela fica na estratosfera e é fininha: comprimida, teria uns três milímetros.",
-    camera: { projection: "perspective", movement: "vertical", keys: [key(0, orbit([2, 10, -2], 45, 20, 8)), key(s(1.4), P.ozoneBand, "soft"), key(end(1), orbit([2, 14.5, -2], 20, 30, 6), "linear")] },
+    camera: { projection: "perspective", movement: "vertical", keys: [key(0, orbit([2, 10, -2], 45, 20, 8)), key(s(1.4), P.ozoneBand, "soft"), key(end(1), orbit([2, 14.5, -2], 24, 30, -12), "linear")] },
     objects: [...world(), o("ghostBand", "contorno-da-faixa"), o("ruler2d", "regua-3mm")],
     animations: [
       lin("ghostBand.show", 0, 12, 0, 1, "out"),                                       // contorno tracejado onde a faixa estava
@@ -132,7 +133,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(2).durationInFrames,
     voKey: "s3",
     narration: "Mesmo assim, ela segura quase todo o ultravioleta mais perigoso do Sol.",
-    camera: { projection: "perspective", movement: "dolly-out", keys: [key(0, orbit([2, 14.5, -2], 20, 30, 6)), key(s(1.2), P.rays, "soft"), key(end(2), orbit([3, 8, -2], 40, 26, 10), "linear")] },
+    camera: { projection: "perspective", movement: "dolly-out", keys: [key(0, orbit([2, 14.5, -2], 24, 30, -12)), key(s(1.2), P.rays, "soft"), key(end(2), orbit([3, 8, -2], 40, 26, 10), "linear")] },
     objects: [...world(), o("ghostBand", "contorno-da-faixa"), o("replay2d", "selo-ANTES")],
     animations: [
       lin("replay.before", 0, 10, 0, 1, "out"),                                        // flashback: a faixa aparece "ANTES", filtrando
@@ -176,7 +177,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(4).durationInFrames,
     voKey: "s5",
     narration: "Só a metade iluminada do planeta é atingida. Quem está na noite não percebe nada.",
-    camera: { projection: "perspective", movement: "orbit", keys: [key(0, orbit([1, 2, 0.5], 18, 34, 14)), key(s(1.0), orbit([0, 60, -80], 85, 10, 10), "inOut"), key(W("s5", 8), P.globe, "soft"), key(end(4), orbit([0, 60, -80], 75, 100, 12), "linear")] },
+    camera: { projection: "perspective", movement: "orbit", keys: [key(0, orbit([1, 2, 0.5], 18, 34, 14)), key(1, orbit([0, 60, -80], 85, 10, 10)), key(W("s5", 8), P.globe, "soft"), key(end(4), orbit([0, 60, -80], 75, 100, 12), "linear")] },
     objects: [o("globe", "planeta", "dia/noite", "lado noturno destacado"), o("globeShell", "casca-de-ozonio", "ausente", "ausente"), o("sunlight", "luz-do-sol")],
     animations: [
       lin("globe.show", 0, s(0.8), 0, 1, "out"),
@@ -195,10 +196,9 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(5).durationInFrames,
     voKey: "s6",
     narration: "Na praia, ninguém sente dor. O ultravioleta não esquenta: ele atravessa a pele e quebra o DNA das células.",
-    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, orbit([0, 60, -80], 75, 100, 12)), key(s(1.0), P.beachClose, "inOut"), key(W("s6", 5), P.beachClose), key(W("s6", 9), P.skin, "soft"), key(W("s6", 14), P.skinDNA, "soft"), key(end(5), orbit([-30, 1.6, 1.0], 4.2, 28, 10), "linear")] },
+    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, orbit([0, 60, -80], 75, 100, 12)), key(1, orbit([0, 1, 1.5], 13, 15, 12)), key(W("s6", 8), P.beachClose, "soft"), key(W("s6", 9) - 1, P.beachClose), key(W("s6", 9), P.skin), key(W("s6", 14), P.skinDNA, "soft"), key(end(5), orbit([-30, 1.6, 2.6], 4.2, 28, 10), "linear")] },
     objects: [...world(), o("skin", "bloco-de-pele", "intacto", "DNA com quebras"), o("dna", "dupla-helice")],
     animations: [
-      lin("timer.min", 0, end(5), undefined, 3, "linear", "px"),
       lin("skin.uvPhotons", W("s6", 9), W("s6", 13), 0, 1, "linear"),                   // fótons roxos entram na pele
       lin("dna.breaks", W("s6", 14), W("s6", 16) + 10, 0, 1, "out"),                     // 3 pontos da hélice viram "dímeros" vermelhos
       lin("heat.icon", W("s6", 6), W("s6", 8), 0, 1, "out"),                             // termômetro 2D parado ("não esquenta")
@@ -219,10 +219,9 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(6).durationInFrames,
     voKey: "s7",
     narration: "Em poucos minutos, a dose já é de queimadura forte. Mas a vermelhidão só aparece horas depois.",
-    camera: { projection: "perspective", movement: "orbit", keys: [key(0, orbit([-30, 1.6, 1.0], 4.2, 28, 10)), key(s(1.0), P.beachBurn, "inOut"), key(end(6), orbit([0, 0.8, 1.5], 8.5, 50, 20), "linear")] },
+    camera: { projection: "perspective", movement: "orbit", keys: [key(0, orbit([-30, 1.6, 2.6], 4.2, 28, 10)), key(1, orbit([0, 0.8, 1.5], 10, 30, 18)), key(end(6), orbit([0, 0.8, 1.5], 8.5, 50, 20), "soft")] },
     objects: [...world(), o("doseBar2d", "barra-de-dose"), o("clockAhead2d", "relogio-horas-depois")],
     animations: [
-      lin("timer.min", 0, end(6), undefined, 5, "linear", "px"),
       lin("dose.level", W("s7", 1), W("s7", 9), 0, 1, "out"),                            // barra 2D enche até "QUEIMADURA"
       lin("skin.redPreview", W("s7", 12), W("s7", 16) + 8, 0, 1, "inOut"),               // prévia "+6 h": banhista fica vermelho num inserto
     ],
@@ -238,10 +237,9 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(7).durationInFrames,
     voKey: "s8",
     narration: "Os olhos também queimam, como os de um soldador sem máscara. A dor costuma chegar à noite.",
-    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, orbit([0, 0.8, 1.5], 8.5, 50, 20)), key(s(1.0), orbit([-30, 1.5, 14], 12, 25, 8), "inOut"), key(end(7), P.eye, "soft")] },
+    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, orbit([0, 0.8, 1.5], 8.5, 50, 20)), key(1, orbit([-30, 1.5, 14], 12, 25, 8)), key(end(7), P.eye, "soft")] },
     objects: [o("eye", "olho-low-poly", "normal", "córnea irritada"), o("welder2d", "icone-soldador"), o("moon2d", "lua-2d")],
     animations: [
-      lin("timer.min", 0, end(7), undefined, 7, "linear", "px"),
       lin("eye.cornea", W("s8", 3), W("s8", 3) + 20, 0, 1, "out"),                       // córnea fica vermelha/opaca
       spr("welder.show", W("s8", 8), 0, 1, 12),
       lin("welder.show", W("s8", 11) - 6, W("s8", 11) + 4, 1, 0, "in"),
@@ -259,10 +257,9 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(8).durationInFrames,
     voKey: "s9",
     narration: "Quem estava dentro de casa escapa: telhado e paredes barram o ultravioleta.",
-    camera: { projection: "perspective", movement: "orbit", keys: [key(0, P.eye), key(s(0.9), P.house, "inOut"), key(end(8), orbit([-6.5, 2, -1], 15, 35, 14), "linear")] },
+    camera: { projection: "perspective", movement: "orbit", keys: [key(0, P.eye), key(1, orbit([-6.5, 2, -1], 18, 10, 12)), key(s(1.2), P.house, "soft"), key(end(8), orbit([-6.5, 2, -1], 15, 35, 14), "linear")] },
     objects: [...world(), o("houseCut", "casa-em-corte", "fechada", "parede frontal aberta"), o("insidePerson", "morador")],
     animations: [
-      lin("timer.min", 0, end(8), undefined, 8, "linear", "px"),
       lin("house.cut", 0, s(1.2), 0, 1, "inOut"),
       lin("roof.block", W("s9", 6), W("s9", 9) + 6, 0, 1, "out"),                        // setas param no telhado com faísca de bloqueio
       spr("insidePerson.check", W("s9", 4), 0, 1, 12),
@@ -279,10 +276,9 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(9).durationInFrames,
     voKey: "s10",
     narration: "Lá fora, o UV-C mata micróbios nas folhas e no solo, e o plâncton da superfície do mar sofre.",
-    camera: { projection: "perspective", movement: "tracking", keys: [key(0, orbit([-6.5, 2, -1], 15, 35, 14)), key(s(1.0), orbit([-4, 1.5, -2], 9, 30, 14), "inOut"), key(W("s10", 12), P.nature, "soft"), key(W("s10", 14), P.seaCut, "soft"), key(end(9), orbit([5.5, -1.2, 4], 9.5, 0, 4), "linear")] },
+    camera: { projection: "perspective", movement: "tracking", keys: [key(0, orbit([-6.5, 2, -1], 15, 35, 14)), key(s(1.0), orbit([-4, 2.6, -2.5], 9, -35, 22), "inOut"), key(W("s10", 12), orbit([-3.8, 2.2, -2.5], 8.5, -20, 18), "linear"), key(W("s10", 13), P.seaCut, "inOut"), key(end(9), orbit([5.5, -1.2, 4], 9.5, 0, 4), "linear")] },
     objects: [...world(), o("microbes", "microbios-nas-folhas", "vivos", "apagados"), o("plankton", "plancton", "verde", "parte apagada perto da superfície")],
     animations: [
-      lin("timer.min", 0, end(9), undefined, 9, "linear", "px"),
       lin("microbes.alive", W("s10", 4), W("s10", 10) + 6, 1, 0.2, "inOut"),             // pontinhos verdes nas folhas ficam cinza
       lin("plankton.health", W("s10", 13), W("s10", 18) + 8, 1, 0.45, "inOut"),          // só a camada de cima escurece
     ],
@@ -304,8 +300,8 @@ export const scenes: ScenePlan[] = [
     camera: { projection: "perspective", movement: "dolly-out", keys: [key(0, orbit([5.5, -1.2, 4], 9.5, 0, 4)), key(s(1.2), P.skyColumn, "inOut"), key(end(10), orbit([2, 10, -2], 44, 24, 9), "linear")] },
     objects: [...world()],
     animations: [
-      lin("timer.min", 0, W("s11", 3), undefined, 10, "linear", "px"),
       lin("ozone.amount", W("s11", 6), W("s11", 8) + 10, 0, 1, "out"),
+      lin("label.band", W("s11", 8), W("s11", 8) + 12, 0, 1, "out"),
       lin("ozone.dissolve", W("s11", 6), W("s11", 8) + 10, 1, 0, "out"),
       lin("rays.stopAtBand", W("s11", 8), W("s11", 8) + 6, 0, 1, "linear"),
       lin("uvc.level", W("s11", 8), W("s11", 8) + 10, 1, 0, "in"),
@@ -325,7 +321,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(11).durationInFrames,
     voKey: "s12",
     narration: "À noite, filas no hospital: pele vermelha e olhos ardendo. Na maioria dos casos, tudo sara em poucos dias.",
-    camera: { projection: "perspective", movement: "tracking", keys: [key(0, orbit([2, 10, -2], 44, 24, 9)), key(s(1.2), P.night, "inOut"), key(W("s12", 10), orbit([-8.5, 1.5, -4], 16, 15, 10), "soft"), key(end(11), orbit([-8.5, 1.5, -4], 15, 25, 10), "linear")] },
+    camera: { projection: "perspective", movement: "tracking", keys: [key(0, orbit([2, 10, -2], 44, 24, 9)), key(s(1.2), P.night, "inOut"), key(W("s12", 10), orbit([-1.4, 1.6, -1.5], 15, 20, 10), "soft"), key(end(11), orbit([-1.4, 1.6, -1.5], 14, 30, 10), "linear")] },
     objects: [...world(), o("hospital", "hospital", "oculto", "fila na porta"), o("queue", "fila-de-pessoas"), o("calendar2d", "calendario-dias")],
     animations: [
       lin("sky.night", 0, s(1.2), 0, 1, "inOut"),
@@ -350,7 +346,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(12).durationInFrames,
     voKey: "s13",
     narration: "Mas o DNA danificado deixa um risco maior de câncer de pele nos anos seguintes.",
-    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, orbit([-8.5, 1.5, -4], 15, 25, 10)), key(s(1.0), P.skinDNA, "inOut"), key(end(12), orbit([-30, 1.6, 1.0], 4.0, 10, 8), "linear")] },
+    camera: { projection: "perspective", movement: "dolly-in", keys: [key(0, orbit([-1.4, 1.6, -1.5], 14, 30, 10)), key(1, orbit([-30, 1.6, 2.6], 5.5, 10, 10)), key(end(12), orbit([-30, 1.6, 2.6], 4.0, 25, 8), "soft")] },
     objects: [o("skin", "bloco-de-pele", "DNA com quebras", "algumas quebras ficam"), o("dna", "dupla-helice"), o("riskChart2d", "grafico-risco-anos")],
     animations: [
       lin("sky.night", 0, s(1.0), 1, 0, "inOut"),
@@ -369,7 +365,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(13).durationInFrames,
     voKey: "s14",
     narration: "Por isso o mundo baniu os gases que destroem o ozônio: essa camada fininha te protege todo dia.",
-    camera: { projection: "perspective", movement: "vertical", keys: [key(0, orbit([-30, 1.6, 1.0], 4.0, 10, 8)), key(s(1.0), P.ozoneBand, "inOut"), key(W("s14", 11), orbit([2, 12, -2], 30, 22, 8), "soft"), key(end(13), orbit([2, 10, -2], 40, 25, 9), "linear")] },
+    camera: { projection: "perspective", movement: "vertical", keys: [key(0, orbit([-30, 1.6, 2.6], 4.0, 25, 8)), key(1, orbit([2, 14.5, -2], 24, 30, -12)), key(W("s14", 11), orbit([2, 12, -2], 34, 22, 6), "soft"), key(end(13), orbit([2, 10, -2], 40, 25, 9), "linear")] },
     objects: [...world(), o("cfc2d", "lata-de-spray-com-X")],
     animations: [
       spr("cfc.show", W("s14", 4), 0, 1, 12),

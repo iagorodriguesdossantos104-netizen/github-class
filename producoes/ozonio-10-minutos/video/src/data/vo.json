@@ -1,1 +1,1297 @@
-{}
+{
+  "s1": {
+    "text": "Meio-dia, praia lotada. De repente, a camada de ozônio some por dez minutos. O que acontece?",
+    "seconds": 7.149,
+    "words": [
+      {
+        "text": "Meio-dia,",
+        "start": 0,
+        "end": 0.559
+      },
+      {
+        "text": "praia",
+        "start": 0.76,
+        "end": 1.006
+      },
+      {
+        "text": "lotada.",
+        "start": 1.017,
+        "end": 1.474
+      },
+      {
+        "text": "De",
+        "start": 2.239,
+        "end": 2.396
+      },
+      {
+        "text": "repente,",
+        "start": 2.407,
+        "end": 2.953
+      },
+      {
+        "text": "a",
+        "start": 3.121,
+        "end": 3.177
+      },
+      {
+        "text": "camada",
+        "start": 3.188,
+        "end": 3.567
+      },
+      {
+        "text": "de",
+        "start": 3.578,
+        "end": 3.657
+      },
+      {
+        "text": "ozônio",
+        "start": 3.668,
+        "end": 4.047
+      },
+      {
+        "text": "some",
+        "start": 4.058,
+        "end": 4.382
+      },
+      {
+        "text": "por",
+        "start": 4.393,
+        "end": 4.55
+      },
+      {
+        "text": "dez",
+        "start": 4.561,
+        "end": 4.862
+      },
+      {
+        "text": "minutos.",
+        "start": 4.873,
+        "end": 5.387
+      },
+      {
+        "text": "O",
+        "start": 6.157,
+        "end": 6.268
+      },
+      {
+        "text": "que",
+        "start": 6.279,
+        "end": 6.391
+      },
+      {
+        "text": "acontece?",
+        "start": 6.402,
+        "end": 7.038
+      }
+    ]
+  },
+  "s2": {
+    "text": "Ela fica na estratosfera e é fininha: comprimida, teria uns três milímetros.",
+    "seconds": 4.139,
+    "words": [
+      {
+        "text": "Ela",
+        "start": 0,
+        "end": 0.206
+      },
+      {
+        "text": "fica",
+        "start": 0.217,
+        "end": 0.463
+      },
+      {
+        "text": "na",
+        "start": 0.474,
+        "end": 0.53
+      },
+      {
+        "text": "estratosfera",
+        "start": 0.541,
+        "end": 1.188
+      },
+      {
+        "text": "e",
+        "start": 1.2,
+        "end": 1.233
+      },
+      {
+        "text": "é",
+        "start": 1.244,
+        "end": 1.3
+      },
+      {
+        "text": "fininha:",
+        "start": 1.311,
+        "end": 1.747
+      },
+      {
+        "text": "comprimida,",
+        "start": 1.981,
+        "end": 2.595
+      },
+      {
+        "text": "teria",
+        "start": 2.762,
+        "end": 2.985
+      },
+      {
+        "text": "uns",
+        "start": 2.997,
+        "end": 3.175
+      },
+      {
+        "text": "três",
+        "start": 3.186,
+        "end": 3.454
+      },
+      {
+        "text": "milímetros.",
+        "start": 3.465,
+        "end": 4.057
+      }
+    ]
+  },
+  "s3": {
+    "text": "Mesmo assim, ela segura quase todo o ultravioleta mais perigoso do Sol.",
+    "seconds": 4.081,
+    "words": [
+      {
+        "text": "Mesmo",
+        "start": 0,
+        "end": 0.287
+      },
+      {
+        "text": "assim,",
+        "start": 0.299,
+        "end": 0.611
+      },
+      {
+        "text": "ela",
+        "start": 0.868,
+        "end": 1.024
+      },
+      {
+        "text": "segura",
+        "start": 1.035,
+        "end": 1.47
+      },
+      {
+        "text": "quase",
+        "start": 1.482,
+        "end": 1.85
+      },
+      {
+        "text": "todo",
+        "start": 1.861,
+        "end": 2.14
+      },
+      {
+        "text": "o",
+        "start": 2.151,
+        "end": 2.174
+      },
+      {
+        "text": "ultravioleta",
+        "start": 2.185,
+        "end": 2.799
+      },
+      {
+        "text": "mais",
+        "start": 2.81,
+        "end": 3.078
+      },
+      {
+        "text": "perigoso",
+        "start": 3.089,
+        "end": 3.591
+      },
+      {
+        "text": "do",
+        "start": 3.602,
+        "end": 3.691
+      },
+      {
+        "text": "Sol.",
+        "start": 3.703,
+        "end": 4.004
+      }
+    ]
+  },
+  "s4": {
+    "text": "Sem ela, o UV-B chega muito mais forte. E chega o UV-C, que hoje nem toca o chão: o mesmo que esteriliza hospitais.",
+    "seconds": 7.907,
+    "words": [
+      {
+        "text": "Sem",
+        "start": 0,
+        "end": 0.258
+      },
+      {
+        "text": "ela,",
+        "start": 0.269,
+        "end": 0.537
+      },
+      {
+        "text": "o",
+        "start": 0.805,
+        "end": 0.973
+      },
+      {
+        "text": "UV-B",
+        "start": 0.984,
+        "end": 1.307
+      },
+      {
+        "text": "chega",
+        "start": 1.319,
+        "end": 1.575
+      },
+      {
+        "text": "muito",
+        "start": 1.586,
+        "end": 1.932
+      },
+      {
+        "text": "mais",
+        "start": 1.944,
+        "end": 2.133
+      },
+      {
+        "text": "forte.",
+        "start": 2.144,
+        "end": 2.569
+      },
+      {
+        "text": "E",
+        "start": 3.333,
+        "end": 3.423
+      },
+      {
+        "text": "chega",
+        "start": 3.434,
+        "end": 3.713
+      },
+      {
+        "text": "o",
+        "start": 3.724,
+        "end": 3.791
+      },
+      {
+        "text": "UV-C,",
+        "start": 3.802,
+        "end": 4.349
+      },
+      {
+        "text": "que",
+        "start": 4.583,
+        "end": 4.728
+      },
+      {
+        "text": "hoje",
+        "start": 4.74,
+        "end": 4.996
+      },
+      {
+        "text": "nem",
+        "start": 5.007,
+        "end": 5.208
+      },
+      {
+        "text": "toca",
+        "start": 5.219,
+        "end": 5.498
+      },
+      {
+        "text": "o",
+        "start": 5.51,
+        "end": 5.532
+      },
+      {
+        "text": "chão:",
+        "start": 5.543,
+        "end": 5.856
+      },
+      {
+        "text": "o",
+        "start": 6.168,
+        "end": 6.246
+      },
+      {
+        "text": "mesmo",
+        "start": 6.257,
+        "end": 6.626
+      },
+      {
+        "text": "que",
+        "start": 6.637,
+        "end": 6.715
+      },
+      {
+        "text": "esteriliza",
+        "start": 6.726,
+        "end": 7.195
+      },
+      {
+        "text": "hospitais.",
+        "start": 7.206,
+        "end": 7.82
+      }
+    ]
+  },
+  "s5": {
+    "text": "Só a metade iluminada do planeta é atingida. Quem está na noite não percebe nada.",
+    "seconds": 5.048,
+    "words": [
+      {
+        "text": "Só",
+        "start": 0,
+        "end": 0.193
+      },
+      {
+        "text": "a",
+        "start": 0.204,
+        "end": 0.238
+      },
+      {
+        "text": "metade",
+        "start": 0.249,
+        "end": 0.629
+      },
+      {
+        "text": "iluminada",
+        "start": 0.64,
+        "end": 1.086
+      },
+      {
+        "text": "do",
+        "start": 1.097,
+        "end": 1.187
+      },
+      {
+        "text": "planeta",
+        "start": 1.198,
+        "end": 1.655
+      },
+      {
+        "text": "é",
+        "start": 1.667,
+        "end": 1.745
+      },
+      {
+        "text": "atingida.",
+        "start": 1.756,
+        "end": 2.37
+      },
+      {
+        "text": "Quem",
+        "start": 3.134,
+        "end": 3.346
+      },
+      {
+        "text": "está",
+        "start": 3.358,
+        "end": 3.57
+      },
+      {
+        "text": "na",
+        "start": 3.581,
+        "end": 3.659
+      },
+      {
+        "text": "noite",
+        "start": 3.67,
+        "end": 4.005
+      },
+      {
+        "text": "não",
+        "start": 4.016,
+        "end": 4.161
+      },
+      {
+        "text": "percebe",
+        "start": 4.172,
+        "end": 4.608
+      },
+      {
+        "text": "nada.",
+        "start": 4.619,
+        "end": 4.942
+      }
+    ]
+  },
+  "s6": {
+    "text": "Na praia, ninguém sente dor. O ultravioleta não esquenta: ele atravessa a pele e quebra o DNA das células.",
+    "seconds": 6.646,
+    "words": [
+      {
+        "text": "Na",
+        "start": 0,
+        "end": 0.152
+      },
+      {
+        "text": "praia,",
+        "start": 0.164,
+        "end": 0.498
+      },
+      {
+        "text": "ninguém",
+        "start": 0.699,
+        "end": 1.034
+      },
+      {
+        "text": "sente",
+        "start": 1.045,
+        "end": 1.402
+      },
+      {
+        "text": "dor.",
+        "start": 1.414,
+        "end": 1.626
+      },
+      {
+        "text": "O",
+        "start": 2.39,
+        "end": 2.468
+      },
+      {
+        "text": "ultravioleta",
+        "start": 2.48,
+        "end": 3.127
+      },
+      {
+        "text": "não",
+        "start": 3.138,
+        "end": 3.305
+      },
+      {
+        "text": "esquenta:",
+        "start": 3.317,
+        "end": 3.797
+      },
+      {
+        "text": "ele",
+        "start": 4.009,
+        "end": 4.12
+      },
+      {
+        "text": "atravessa",
+        "start": 4.131,
+        "end": 4.556
+      },
+      {
+        "text": "a",
+        "start": 4.567,
+        "end": 4.6
+      },
+      {
+        "text": "pele",
+        "start": 4.611,
+        "end": 4.946
+      },
+      {
+        "text": "e",
+        "start": 4.957,
+        "end": 5.013
+      },
+      {
+        "text": "quebra",
+        "start": 5.024,
+        "end": 5.292
+      },
+      {
+        "text": "o",
+        "start": 5.303,
+        "end": 5.348
+      },
+      {
+        "text": "DNA",
+        "start": 5.359,
+        "end": 5.794
+      },
+      {
+        "text": "das",
+        "start": 5.806,
+        "end": 6.006
+      },
+      {
+        "text": "células.",
+        "start": 6.018,
+        "end": 6.564
+      }
+    ]
+  },
+  "s7": {
+    "text": "Em poucos minutos, a dose já é de queimadura forte. Mas a vermelhidão só aparece horas depois.",
+    "seconds": 5.995,
+    "words": [
+      {
+        "text": "Em",
+        "start": 0,
+        "end": 0.103
+      },
+      {
+        "text": "poucos",
+        "start": 0.114,
+        "end": 0.427
+      },
+      {
+        "text": "minutos,",
+        "start": 0.438,
+        "end": 0.918
+      },
+      {
+        "text": "a",
+        "start": 1.018,
+        "end": 1.107
+      },
+      {
+        "text": "dose",
+        "start": 1.118,
+        "end": 1.453
+      },
+      {
+        "text": "já",
+        "start": 1.465,
+        "end": 1.598
+      },
+      {
+        "text": "é",
+        "start": 1.61,
+        "end": 1.688
+      },
+      {
+        "text": "de",
+        "start": 1.699,
+        "end": 1.788
+      },
+      {
+        "text": "queimadura",
+        "start": 1.799,
+        "end": 2.324
+      },
+      {
+        "text": "forte.",
+        "start": 2.335,
+        "end": 2.77
+      },
+      {
+        "text": "Mas",
+        "start": 3.535,
+        "end": 3.725
+      },
+      {
+        "text": "a",
+        "start": 3.736,
+        "end": 3.859
+      },
+      {
+        "text": "vermelhidão",
+        "start": 3.87,
+        "end": 4.45
+      },
+      {
+        "text": "só",
+        "start": 4.461,
+        "end": 4.673
+      },
+      {
+        "text": "aparece",
+        "start": 4.685,
+        "end": 5.12
+      },
+      {
+        "text": "horas",
+        "start": 5.131,
+        "end": 5.388
+      },
+      {
+        "text": "depois.",
+        "start": 5.399,
+        "end": 5.912
+      }
+    ]
+  },
+  "s8": {
+    "text": "Os olhos também queimam, como os de um soldador sem máscara. A dor costuma chegar à noite.",
+    "seconds": 5.532,
+    "words": [
+      {
+        "text": "Os",
+        "start": 0,
+        "end": 0.074
+      },
+      {
+        "text": "olhos",
+        "start": 0.086,
+        "end": 0.476
+      },
+      {
+        "text": "também",
+        "start": 0.487,
+        "end": 0.811
+      },
+      {
+        "text": "queimam,",
+        "start": 0.822,
+        "end": 1.179
+      },
+      {
+        "text": "como",
+        "start": 1.436,
+        "end": 1.67
+      },
+      {
+        "text": "os",
+        "start": 1.682,
+        "end": 1.76
+      },
+      {
+        "text": "de",
+        "start": 1.771,
+        "end": 1.849
+      },
+      {
+        "text": "um",
+        "start": 1.86,
+        "end": 1.927
+      },
+      {
+        "text": "soldador",
+        "start": 1.938,
+        "end": 2.418
+      },
+      {
+        "text": "sem",
+        "start": 2.429,
+        "end": 2.664
+      },
+      {
+        "text": "máscara.",
+        "start": 2.675,
+        "end": 3.144
+      },
+      {
+        "text": "A",
+        "start": 3.908,
+        "end": 4.02
+      },
+      {
+        "text": "dor",
+        "start": 4.031,
+        "end": 4.221
+      },
+      {
+        "text": "costuma",
+        "start": 4.232,
+        "end": 4.656
+      },
+      {
+        "text": "chegar",
+        "start": 4.667,
+        "end": 4.957
+      },
+      {
+        "text": "à",
+        "start": 4.969,
+        "end": 5.013
+      },
+      {
+        "text": "noite.",
+        "start": 5.024,
+        "end": 5.437
+      }
+    ]
+  },
+  "s9": {
+    "text": "Quem estava dentro de casa escapa: telhado e paredes barram o ultravioleta.",
+    "seconds": 3.871,
+    "words": [
+      {
+        "text": "Quem",
+        "start": 0,
+        "end": 0.141
+      },
+      {
+        "text": "estava",
+        "start": 0.153,
+        "end": 0.476
+      },
+      {
+        "text": "dentro",
+        "start": 0.487,
+        "end": 0.766
+      },
+      {
+        "text": "de",
+        "start": 0.778,
+        "end": 0.878
+      },
+      {
+        "text": "casa",
+        "start": 0.889,
+        "end": 1.135
+      },
+      {
+        "text": "escapa:",
+        "start": 1.146,
+        "end": 1.559
+      },
+      {
+        "text": "telhado",
+        "start": 1.815,
+        "end": 2.217
+      },
+      {
+        "text": "e",
+        "start": 2.228,
+        "end": 2.262
+      },
+      {
+        "text": "paredes",
+        "start": 2.273,
+        "end": 2.686
+      },
+      {
+        "text": "barram",
+        "start": 2.697,
+        "end": 3.054
+      },
+      {
+        "text": "o",
+        "start": 3.065,
+        "end": 3.099
+      },
+      {
+        "text": "ultravioleta.",
+        "start": 3.11,
+        "end": 3.791
+      }
+    ]
+  },
+  "s10": {
+    "text": "Lá fora, o UV-C mata micróbios nas folhas e no solo, e o plâncton da superfície do mar sofre.",
+    "seconds": 5.392,
+    "words": [
+      {
+        "text": "Lá",
+        "start": 0,
+        "end": 0.114
+      },
+      {
+        "text": "fora,",
+        "start": 0.125,
+        "end": 0.493
+      },
+      {
+        "text": "o",
+        "start": 0.772,
+        "end": 0.929
+      },
+      {
+        "text": "UV-C",
+        "start": 0.94,
+        "end": 1.308
+      },
+      {
+        "text": "mata",
+        "start": 1.319,
+        "end": 1.587
+      },
+      {
+        "text": "micróbios",
+        "start": 1.598,
+        "end": 2.067
+      },
+      {
+        "text": "nas",
+        "start": 2.078,
+        "end": 2.234
+      },
+      {
+        "text": "folhas",
+        "start": 2.246,
+        "end": 2.547
+      },
+      {
+        "text": "e",
+        "start": 2.558,
+        "end": 2.636
+      },
+      {
+        "text": "no",
+        "start": 2.647,
+        "end": 2.737
+      },
+      {
+        "text": "solo,",
+        "start": 2.748,
+        "end": 3.094
+      },
+      {
+        "text": "e",
+        "start": 3.328,
+        "end": 3.429
+      },
+      {
+        "text": "o",
+        "start": 3.44,
+        "end": 3.507
+      },
+      {
+        "text": "plâncton",
+        "start": 3.518,
+        "end": 3.909
+      },
+      {
+        "text": "da",
+        "start": 3.92,
+        "end": 4.009
+      },
+      {
+        "text": "superfície",
+        "start": 4.02,
+        "end": 4.6
+      },
+      {
+        "text": "do",
+        "start": 4.612,
+        "end": 4.701
+      },
+      {
+        "text": "mar",
+        "start": 4.712,
+        "end": 4.868
+      },
+      {
+        "text": "sofre.",
+        "start": 4.879,
+        "end": 5.315
+      }
+    ]
+  },
+  "s11": {
+    "text": "Aí os dez minutos acabam, e o ozônio volta a filtrar o Sol.",
+    "seconds": 3.548,
+    "words": [
+      {
+        "text": "Aí",
+        "start": 0,
+        "end": 0.238
+      },
+      {
+        "text": "os",
+        "start": 0.249,
+        "end": 0.372
+      },
+      {
+        "text": "dez",
+        "start": 0.383,
+        "end": 0.673
+      },
+      {
+        "text": "minutos",
+        "start": 0.684,
+        "end": 1.03
+      },
+      {
+        "text": "acabam,",
+        "start": 1.041,
+        "end": 1.51
+      },
+      {
+        "text": "e",
+        "start": 1.8,
+        "end": 1.889
+      },
+      {
+        "text": "o",
+        "start": 1.901,
+        "end": 1.934
+      },
+      {
+        "text": "ozônio",
+        "start": 1.945,
+        "end": 2.403
+      },
+      {
+        "text": "volta",
+        "start": 2.414,
+        "end": 2.693
+      },
+      {
+        "text": "a",
+        "start": 2.704,
+        "end": 2.726
+      },
+      {
+        "text": "filtrar",
+        "start": 2.738,
+        "end": 3.095
+      },
+      {
+        "text": "o",
+        "start": 3.106,
+        "end": 3.151
+      },
+      {
+        "text": "Sol.",
+        "start": 3.162,
+        "end": 3.463
+      }
+    ]
+  },
+  "s12": {
+    "text": "À noite, filas no hospital: pele vermelha e olhos ardendo. Na maioria dos casos, tudo sara em poucos dias.",
+    "seconds": 6.868,
+    "words": [
+      {
+        "text": "À",
+        "start": 0,
+        "end": 0.049
+      },
+      {
+        "text": "noite,",
+        "start": 0.06,
+        "end": 0.429
+      },
+      {
+        "text": "filas",
+        "start": 0.674,
+        "end": 0.964
+      },
+      {
+        "text": "no",
+        "start": 0.975,
+        "end": 1.031
+      },
+      {
+        "text": "hospital:",
+        "start": 1.042,
+        "end": 1.533
+      },
+      {
+        "text": "pele",
+        "start": 1.723,
+        "end": 1.913
+      },
+      {
+        "text": "vermelha",
+        "start": 1.924,
+        "end": 2.393
+      },
+      {
+        "text": "e",
+        "start": 2.404,
+        "end": 2.493
+      },
+      {
+        "text": "olhos",
+        "start": 2.504,
+        "end": 2.705
+      },
+      {
+        "text": "ardendo.",
+        "start": 2.716,
+        "end": 3.208
+      },
+      {
+        "text": "Na",
+        "start": 3.972,
+        "end": 4.106
+      },
+      {
+        "text": "maioria",
+        "start": 4.117,
+        "end": 4.486
+      },
+      {
+        "text": "dos",
+        "start": 4.497,
+        "end": 4.687
+      },
+      {
+        "text": "casos,",
+        "start": 4.698,
+        "end": 5.144
+      },
+      {
+        "text": "tudo",
+        "start": 5.379,
+        "end": 5.635
+      },
+      {
+        "text": "sara",
+        "start": 5.646,
+        "end": 5.87
+      },
+      {
+        "text": "em",
+        "start": 5.881,
+        "end": 5.97
+      },
+      {
+        "text": "poucos",
+        "start": 5.981,
+        "end": 6.35
+      },
+      {
+        "text": "dias.",
+        "start": 6.361,
+        "end": 6.785
+      }
+    ]
+  },
+  "s13": {
+    "text": "Mas o DNA danificado deixa um risco maior de câncer de pele nos anos seguintes.",
+    "seconds": 4.189,
+    "words": [
+      {
+        "text": "Mas",
+        "start": 0,
+        "end": 0.166
+      },
+      {
+        "text": "o",
+        "start": 0.177,
+        "end": 0.311
+      },
+      {
+        "text": "DNA",
+        "start": 0.322,
+        "end": 0.701
+      },
+      {
+        "text": "danificado",
+        "start": 0.713,
+        "end": 1.326
+      },
+      {
+        "text": "deixa",
+        "start": 1.338,
+        "end": 1.594
+      },
+      {
+        "text": "um",
+        "start": 1.605,
+        "end": 1.672
+      },
+      {
+        "text": "risco",
+        "start": 1.684,
+        "end": 1.963
+      },
+      {
+        "text": "maior",
+        "start": 1.974,
+        "end": 2.264
+      },
+      {
+        "text": "de",
+        "start": 2.275,
+        "end": 2.387
+      },
+      {
+        "text": "câncer",
+        "start": 2.398,
+        "end": 2.733
+      },
+      {
+        "text": "de",
+        "start": 2.744,
+        "end": 2.855
+      },
+      {
+        "text": "pele",
+        "start": 2.867,
+        "end": 3.146
+      },
+      {
+        "text": "nos",
+        "start": 3.157,
+        "end": 3.246
+      },
+      {
+        "text": "anos",
+        "start": 3.257,
+        "end": 3.525
+      },
+      {
+        "text": "seguintes.",
+        "start": 3.536,
+        "end": 4.105
+      }
+    ]
+  },
+  "s14": {
+    "text": "Por isso o mundo baniu os gases que destroem o ozônio: essa camada fininha te protege todo dia.",
+    "seconds": 4.791,
+    "words": [
+      {
+        "text": "Por",
+        "start": 0,
+        "end": 0.107
+      },
+      {
+        "text": "isso",
+        "start": 0.118,
+        "end": 0.353
+      },
+      {
+        "text": "o",
+        "start": 0.364,
+        "end": 0.375
+      },
+      {
+        "text": "mundo",
+        "start": 0.386,
+        "end": 0.643
+      },
+      {
+        "text": "baniu",
+        "start": 0.654,
+        "end": 0.922
+      },
+      {
+        "text": "os",
+        "start": 0.933,
+        "end": 1.033
+      },
+      {
+        "text": "gases",
+        "start": 1.045,
+        "end": 1.435
+      },
+      {
+        "text": "que",
+        "start": 1.446,
+        "end": 1.536
+      },
+      {
+        "text": "destroem",
+        "start": 1.547,
+        "end": 1.937
+      },
+      {
+        "text": "o",
+        "start": 1.949,
+        "end": 1.971
+      },
+      {
+        "text": "ozônio:",
+        "start": 1.982,
+        "end": 2.406
+      },
+      {
+        "text": "essa",
+        "start": 2.641,
+        "end": 2.864
+      },
+      {
+        "text": "camada",
+        "start": 2.875,
+        "end": 3.277
+      },
+      {
+        "text": "fininha",
+        "start": 3.288,
+        "end": 3.612
+      },
+      {
+        "text": "te",
+        "start": 3.623,
+        "end": 3.701
+      },
+      {
+        "text": "protege",
+        "start": 3.712,
+        "end": 4.147
+      },
+      {
+        "text": "todo",
+        "start": 4.158,
+        "end": 4.415
+      },
+      {
+        "text": "dia.",
+        "start": 4.426,
+        "end": 4.683
+      }
+    ]
+  },
+  "s15": {
+    "text": "Pronto: agora você sabe o que dez minutos sem ozônio fariam com a gente.",
+    "seconds": 3.757,
+    "words": [
+      {
+        "text": "Pronto:",
+        "start": 0,
+        "end": 0.302
+      },
+      {
+        "text": "agora",
+        "start": 0.547,
+        "end": 0.86
+      },
+      {
+        "text": "você",
+        "start": 0.871,
+        "end": 1.094
+      },
+      {
+        "text": "sabe",
+        "start": 1.105,
+        "end": 1.362
+      },
+      {
+        "text": "o",
+        "start": 1.373,
+        "end": 1.407
+      },
+      {
+        "text": "que",
+        "start": 1.418,
+        "end": 1.529
+      },
+      {
+        "text": "dez",
+        "start": 1.541,
+        "end": 1.786
+      },
+      {
+        "text": "minutos",
+        "start": 1.797,
+        "end": 2.199
+      },
+      {
+        "text": "sem",
+        "start": 2.21,
+        "end": 2.344
+      },
+      {
+        "text": "ozônio",
+        "start": 2.355,
+        "end": 2.746
+      },
+      {
+        "text": "fariam",
+        "start": 2.757,
+        "end": 3.081
+      },
+      {
+        "text": "com",
+        "start": 3.092,
+        "end": 3.248
+      },
+      {
+        "text": "a",
+        "start": 3.259,
+        "end": 3.293
+      },
+      {
+        "text": "gente.",
+        "start": 3.304,
+        "end": 3.683
+      }
+    ]
+  }
+}

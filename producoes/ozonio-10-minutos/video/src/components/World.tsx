@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { interpolateColors, useCurrentFrame } from "remotion";
 import { AdditiveBlending, BoxGeometry, Color, DoubleSide, Float32BufferAttribute, IcosahedronGeometry, Quaternion, Vector3 } from "three";
 import { isVisible, sceneAt, track } from "../data/scenes";
+import { cameraPoseAt } from "./CameraController";
 import { MATTE, PALETTE } from "../theme";
 import { clamp, lerp, pulse, rand, smoothstep, type Vec3 } from "../utils/animation";
 
@@ -15,7 +16,7 @@ const OZONE_H = 1;
 export const SUN: Vec3 = [10, 22, -14];
 const SUN_DIR = new Vector3(...SUN).normalize();
 export const HOUSE: Vec3 = [-6.5, 0, -1];
-export const HOSPITAL: Vec3 = [-9.5, 0, -6];
+export const HOSPITAL: Vec3 = [-1.5, 0, -4.2];
 export const PALM: Vec3 = [-4, 0, -2.5];
 export const GLOBE: Vec3 = [0, 60, -80];
 export const SKIN: Vec3 = [-30, 0, 0];
@@ -26,7 +27,7 @@ const FRONT_Z = 4;
 const BACK_Z = -5;
 
 export const POINTS = {
-  ozone: [-2, OZONE_Y + 0.5, 1] as Vec3,
+  ozone: [2.5, OZONE_Y + 0.5, 1] as Vec3,
   sun: SUN,
   uva: [-3.2, 7, 1.5] as Vec3,
   uvb: [0.4, 10, 1.0] as Vec3,
@@ -149,7 +150,7 @@ const Beach: React.FC<{ frame: number }> = ({ frame }) => {
         const col = interpolateColors(h, [0, 1], [PALETTE.planktonDead, PALETTE.plankton]);
         return (
           <mesh key={i} position={[p.x + Math.sin((frame + p.ph) * 0.05) * 0.05, p.y + Math.cos((frame + p.ph) * 0.04) * 0.04, p.z]}>
-            <icosahedronGeometry args={[0.055, 0]} />
+            <icosahedronGeometry args={[0.09, 0]} />
             <meshBasicMaterial color={col} toneMapped={false} />
           </mesh>
         );
@@ -165,8 +166,8 @@ const Beach: React.FC<{ frame: number }> = ({ frame }) => {
   );
 };
 
-const People: React.FC<{ frame: number }> = () => (
-  <group>
+const People: React.FC<{ frame: number }> = ({ frame }) => (
+  <group visible={track("sky.night", frame) < 0.5}>
     {/* toalha + banhista deitado */}
     <mesh position={[0, 0.02, 1.9]} rotation={[-Math.PI / 2, 0, 0]}>
       <planeGeometry args={[0.9, 2.0]} />
@@ -314,7 +315,7 @@ const Hospital: React.FC<{ frame: number }> = ({ frame }) => {
         </mesh>
       </group>
       {Array.from({ length: n }, (_, i) => (
-        <Person key={i} p={[HOSPITAL[0] + 0.2 + (i % 2) * 0.25, 0, HOSPITAL[2] + 2.2 + i * 0.75]} rot={Math.PI} suit={PALETTE.suit[i % 5]} red={red * (0.6 + 0.4 * rand(`q${i}`))} coverEyes={i % 3 === 1} />
+        <Person key={i} p={[HOSPITAL[0] + 0.2 + (i % 2) * 0.3, 0, HOSPITAL[2] + 2.0 + i * 0.7]} rot={Math.PI} suit={PALETTE.suit[i % 5]} red={red * (0.6 + 0.4 * rand(`q${i}`))} coverEyes={i % 3 === 1} />
       ))}
     </group>
   );
@@ -354,7 +355,7 @@ const SkyColumn: React.FC<{ frame: number }> = ({ frame }) => {
       {band > 0.01 ? (
         <mesh position={[0, OZONE_Y, -2]}>
           <boxGeometry args={[26, OZONE_H, 14]} />
-          <meshStandardMaterial color={PALETTE.ozone} emissive={PALETTE.ozone} emissiveIntensity={0.25 + 0.6 * glow} {...MATTE} transparent opacity={0.4 * band} depthWrite={false} side={DoubleSide} />
+          <meshStandardMaterial color={PALETTE.ozone} emissive={PALETTE.ozone} emissiveIntensity={0.35 + 0.6 * glow} {...MATTE} transparent opacity={0.55 * band} depthWrite={false} side={DoubleSide} />
         </mesh>
       ) : null}
       {/* contorno onde a faixa estava + faixa-fantasma "espremida" */}
@@ -390,7 +391,7 @@ const SkyColumn: React.FC<{ frame: number }> = ({ frame }) => {
 
 const BAND_BOX = new BoxGeometry(26, OZONE_H, 14);
 
-type RayFamily = "uva" | "uvb" | "uvc";
+export type RayFamily = "uva" | "uvb" | "uvc";
 const RAY_COLOR: Record<RayFamily, string> = { uva: PALETTE.uva, uvb: PALETTE.uvb, uvc: PALETTE.uvc };
 const GROUND_PTS = (fam: RayFamily, n: number) =>
   Array.from({ length: n }, (_, i) => ({
@@ -401,10 +402,20 @@ const GROUND_PTS = (fam: RayFamily, n: number) =>
 // o 1º raio de cada família cai sobre a casa (cena 9: o telhado barra)
 const HOUSE_PT = (fam: RayFamily) => ({ x: HOUSE[0] + 0.4, z: HOUSE[2] - 0.2, ph: rand(`${fam}-house`) });
 const RAYS = { uva: [HOUSE_PT("uva"), ...GROUND_PTS("uva", 4)], uvb: [HOUSE_PT("uvb"), ...GROUND_PTS("uvb", 8)], uvc: [HOUSE_PT("uvc"), ...GROUND_PTS("uvc", 8)] };
+/** Ponto sobre um raio real (para rótulos 2D): raio `idx` da família, na altura `h`. */
+export const rayLabelPoint = (fam: RayFamily, idx: number, h: number): Vec3 => {
+  const g = RAYS[fam][idx];
+  const k = h / SUN_DIR.y;
+  return [g.x + SUN_DIR.x * k, h, g.z + SUN_DIR.z * k];
+};
 const inHouse = (x: number, z: number) => x > HOUSE[0] - 1.6 && x < HOUSE[0] + 1.6 && z > HOUSE[2] - 1.6 && z < HOUSE[2] + 1.6;
 
 const Rays: React.FC<{ frame: number }> = ({ frame }) => {
-  const show = clamp(track("rays.show", frame), 0, 1) * (1 - clamp(track("sky.night", frame), 0, 1));
+  const pose = cameraPoseAt(frame);
+  const camDist = Math.hypot(pose.position[0] - pose.target[0], pose.position[1] - pose.target[1], pose.position[2] - pose.target[2]);
+  // nos closes os raios viram faixas gigantes: some quando a câmera está perto
+  const near = clamp((camDist - 16) / 14, 0, 1);
+  const show = clamp(track("rays.show", frame), 0, 1) * (1 - clamp(track("sky.night", frame), 0, 1)) * near;
   if (show < 0.01) return null;
   const stop = track("rays.stopAtBand", frame) > 0.5 || track("replay.before", frame) > 0.5;
   const uvb = clamp(track("uvb.level", frame, 0.25), 0, 1);
@@ -430,16 +441,16 @@ const Rays: React.FC<{ frame: number }> = ({ frame }) => {
       const end = ground.clone().add(SUN_DIR.clone().multiplyScalar(endY / SUN_DIR.y));
       const a: Vec3 = [start.x, start.y, start.z];
       const b: Vec3 = [end.x, end.y, end.z];
-      const w = fam === "uvb" ? 0.05 + 0.05 * uvb : fam === "uvc" ? 0.08 : 0.04;
+      const w = fam === "uvb" ? 0.035 + 0.03 * uvb : fam === "uvc" ? 0.05 : 0.03;
       const col = RAY_COLOR[fam];
       out.push(<Segment key={`${fam}${i}`} a={a} b={b} radius={w} color={col} opacity={0.85 * show} />);
-      out.push(<Segment key={`${fam}${i}g`} a={a} b={b} radius={w * 3.5} color={col} opacity={0.18 * show} additive />);
+      out.push(<Segment key={`${fam}${i}g`} a={a} b={b} radius={w * 2.4} color={col} opacity={0.16 * show} additive />);
       // fótons descendo
       for (let k = 0; k < 3; k++) {
         const u = (frame * 0.025 + g.ph + k / 3) % 1;
         out.push(
           <mesh key={`${fam}${i}p${k}`} position={[lerp(a[0], b[0], u), lerp(a[1], b[1], u), lerp(a[2], b[2], u)]}>
-            <icosahedronGeometry args={[w * 2.4, 0]} />
+            <icosahedronGeometry args={[w * 1.5, 0]} />
             <meshBasicMaterial color="#ffffff" transparent opacity={0.9 * show} toneMapped={false} />
           </mesh>,
         );
@@ -537,7 +548,7 @@ const Skin: React.FC<{ frame: number }> = ({ frame }) => {
     [0, 0.6, PALETTE.hypodermis],
   ];
   // DNA no núcleo da célula central
-  const c: Vec3 = [SKIN[0], 1.6, SKIN[2] + 1.0];
+  const c: Vec3 = [SKIN[0], 1.6, SKIN[2] + 2.6];
   const N = 16;
   const helixLen = 0.9;
   const breakIdx = [4, 8, 12];
@@ -563,7 +574,8 @@ const Skin: React.FC<{ frame: number }> = ({ frame }) => {
           </group>
         ))}
       </group>
-      {/* núcleo ampliado + dupla hélice */}
+      {/* núcleo ampliado + dupla hélice, "puxado" para fora da célula central */}
+      <Segment a={[SKIN[0], 2.05, SKIN[2] + 1.55]} b={[c[0], c[1] - 0.2, c[2] - 0.5]} radius={0.02} color="#ffffff" opacity={0.7} />
       <mesh position={c}>
         <sphereGeometry args={[0.62, 18, 14]} />
         <meshStandardMaterial color="#b06a8f" {...MATTE} transparent opacity={0.35} depthWrite={false} />
@@ -633,11 +645,11 @@ const Eye: React.FC<{ frame: number }> = ({ frame }) => {
           <meshBasicMaterial color="#d63a3a" transparent opacity={0.85 * cornea} toneMapped={false} />
         </mesh>
       ))}
-      <mesh position={[0, 0, 0.93]}>
+      <mesh position={[0, 0, 1.003]}>
         <circleGeometry args={[0.42, 24]} />
         <meshStandardMaterial color={PALETTE.iris} {...MATTE} />
       </mesh>
-      <mesh position={[0, 0, 0.94]}>
+      <mesh position={[0, 0, 1.006]}>
         <circleGeometry args={[0.17, 20]} />
         <meshBasicMaterial color="#0a0a0a" />
       </mesh>
@@ -648,8 +660,8 @@ const Eye: React.FC<{ frame: number }> = ({ frame }) => {
       </mesh>
       {/* pálpebras */}
       {[1, -1].map((s) => (
-        <mesh key={s} position={[0, 0, 0]} rotation={[s > 0 ? -0.35 * blink : Math.PI + 0.55 * blink, 0, 0]}>
-          <sphereGeometry args={[1.06, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2.6]} />
+        <mesh key={s} position={[0, 0, 0]} rotation={[s > 0 ? -0.15 * blink : Math.PI + 0.25 * blink, 0, 0]}>
+          <sphereGeometry args={[1.06, 24, 12, 0, Math.PI * 2, 0, Math.PI / 3.6]} />
           <meshStandardMaterial color={PALETTE.skin} {...MATTE} side={DoubleSide} />
         </mesh>
       ))}

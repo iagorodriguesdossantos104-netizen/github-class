@@ -1,8 +1,8 @@
 import { useCurrentFrame } from "remotion";
 import { cameraPoseAt } from "../components/CameraController";
-import { POINTS } from "../components/World";
+import { POINTS, rayLabelPoint } from "../components/World";
 import { WorldLabel } from "../components/WorldLabel";
-import { track } from "../data/scenes";
+import { scenes, track } from "../data/scenes";
 import { FONT, PALETTE } from "../theme";
 import { clamp, pop, progress, type Vec3 } from "../utils/animation";
 import { FPS, wordLocal } from "../utils/timing";
@@ -60,9 +60,9 @@ const RayLabels: React.FC<{ frame: number; appear: number }> = ({ frame, appear 
   const pose = cameraPoseAt(frame);
   return (
     <>
-      <WorldLabel pose={pose} point={POINTS.uva} text="UV-A" appear={appear} offset={[-130, 60]} accent={PALETTE.uva} size={30} />
-      <WorldLabel pose={pose} point={POINTS.uvb} text="UV-B" appear={appear} offset={[-120, -90]} accent={PALETTE.uvb} size={30} />
-      <WorldLabel pose={pose} point={POINTS.uvc} text="UV-C" appear={appear} offset={[130, -80]} accent={PALETTE.uvc} size={30} />
+      <WorldLabel pose={pose} point={rayLabelPoint("uva", 1, 6)} text="UV-A" appear={appear} offset={[140, 40]} accent={PALETTE.uva} size={30} />
+      <WorldLabel pose={pose} point={rayLabelPoint("uvb", 1, 17.5)} text="UV-B" appear={appear} offset={[-150, -40]} accent={PALETTE.uvb} size={30} />
+      <WorldLabel pose={pose} point={rayLabelPoint("uvc", 2, 18.5)} text="UV-C" appear={appear} offset={[150, -60]} accent={PALETTE.uvc} size={30} />
     </>
   );
 };
@@ -249,7 +249,7 @@ const MontrealOverlay: React.FC<SceneProps> = ({ scene }) => {
   const x = clamp(track("cfc.cross", frame), 0, 1.2);
   if (s < 0.01) return null;
   return (
-    <div style={{ position: "absolute", left: 540, top: 600, translate: "-50% -50%", scale: String(s) }}>
+    <div style={{ position: "absolute", left: 540, top: 640, translate: "-50% -50%", scale: String(s * 1.5) }}>
       <svg width={220} height={240} viewBox="0 0 220 240" role="img" aria-label="Lata de spray com CFC proibida">
         <rect x={60} y={60} width={100} height={160} rx={18} fill="#d9e1e8" stroke="#0a1420" strokeWidth={6} />
         <rect x={85} y={30} width={50} height={34} rx={6} fill="#9aa3ad" stroke="#0a1420" strokeWidth={6} />
@@ -269,10 +269,10 @@ const ConclusaoOverlay: React.FC<SceneProps> = ({ scene }) => {
   const pose = cameraPoseAt(frame);
   const fadeOut = 1 - progress(local, scene.durationInFrames - 22, scene.durationInFrames - 8);
   const L: { p: Vec3; t: string; off: [number, number]; c: string }[] = [
-    { p: POINTS.ozone, t: "OZÔNIO", off: [-150, -120], c: PALETTE.ozone },
-    { p: POINTS.uva, t: "UV-A", off: [-140, 60], c: PALETTE.uva },
-    { p: POINTS.uvb, t: "UV-B", off: [-130, -60], c: PALETTE.uvb },
-    { p: POINTS.uvc, t: "UV-C", off: [140, -60], c: PALETTE.uvc },
+    { p: POINTS.ozone, t: "CAMADA DE OZÔNIO", off: [60, -110], c: PALETTE.ozone },
+    { p: rayLabelPoint("uva", 1, 6), t: "UV-A", off: [140, 40], c: PALETTE.uva },
+    { p: rayLabelPoint("uvb", 1, 17.5), t: "UV-B", off: [-150, -40], c: PALETTE.uvb },
+    { p: rayLabelPoint("uvc", 2, 18.5), t: "UV-C", off: [150, -60], c: PALETTE.uvc },
   ];
   return (
     <div style={{ position: "absolute", inset: 0, opacity: fadeOut }}>
@@ -284,23 +284,31 @@ const ConclusaoOverlay: React.FC<SceneProps> = ({ scene }) => {
 };
 
 // ---------------------------------------------------------------- relógio 2D (cenas 1–11)
+const T0 = scenes[0].startFrame + W("s1", 11);
+const T1 = scenes[10].startFrame + W("s11", 3);
+
 export const GlobalOverlay: React.FC = () => {
   const frame = useCurrentFrame();
   const show = clamp(track("timer.show", frame), 0, 1.2);
-  if (show < 0.01) return null;
-  const min = clamp(track("timer.min", frame), 0, 10);
+  const band = clamp(track("label.band", frame), 0, 1) * (1 - clamp(track("sky.night", frame), 0, 1)) * (frame < scenes[14].startFrame ? 1 : 0);
+  const min = 10 * clamp((frame - T0) / (T1 - T0), 0, 1);
   const mm = Math.floor(min);
   const ss = Math.floor((min - mm) * 60);
   const done = min >= 9.999;
   return (
-    <div style={{ position: "absolute", left: 540, top: 196, translate: "-50% -50%", scale: String(show), display: "flex", alignItems: "center", gap: 12, padding: "8px 22px", borderRadius: 999, background: "rgba(10,20,32,0.88)", border: `4px solid ${done ? PALETTE.positive : PALETTE.warning}` }}>
-      <svg width={34} height={34} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#ffffff" strokeWidth={2.4} strokeLinecap="round">
-        <circle cx={12} cy={13} r={8} />
-        <path d="M12 9v4l3 2M9 2h6" />
-      </svg>
-      <span style={{ fontFamily: FONT, fontWeight: 900, fontSize: 40, color: "#ffffff", fontVariantNumeric: "tabular-nums" }}>{`${String(mm).padStart(2, "0")}:${String(ss).padStart(2, "0")}`}</span>
-      <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: 22, color: "#cfd8e3" }}>TEMPO ACELERADO</span>
-    </div>
+    <>
+      {band > 0.01 ? <WorldLabel pose={cameraPoseAt(frame)} point={POINTS.ozone} text="CAMADA DE OZÔNIO" appear={band} offset={[60, -110]} accent={PALETTE.ozone} size={30} /> : null}
+      {show > 0.01 ? (
+        <div style={{ position: "absolute", left: 540, top: 196, translate: "-50% -50%", scale: String(show), display: "flex", alignItems: "center", gap: 12, padding: "8px 22px", borderRadius: 999, background: "rgba(10,20,32,0.88)", border: `4px solid ${done ? PALETTE.positive : PALETTE.warning}` }}>
+          <svg width={34} height={34} viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#ffffff" strokeWidth={2.4} strokeLinecap="round">
+            <circle cx={12} cy={13} r={8} />
+            <path d="M12 9v4l3 2M9 2h6" />
+          </svg>
+          <span style={{ fontFamily: FONT, fontWeight: 900, fontSize: 40, color: "#ffffff", fontVariantNumeric: "tabular-nums" }}>{`${String(mm).padStart(2, "0")}:${String(ss).padStart(2, "0")}`}</span>
+          <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: 22, color: "#cfd8e3" }}>TEMPO ACELERADO</span>
+        </div>
+      ) : null}
+    </>
   );
 };
 
