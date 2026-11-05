@@ -1,9 +1,9 @@
 # Status de produção — E se a camada de ozônio sumisse por 10 minutos?
 
-- **Fase atual:** AGUARDANDO APROVAÇÃO — implementação e renderização não iniciadas.
-- **Roteiro:** v1 (2026-11-05), 15 cenas, 90 s, 1080×1920, 30 fps; aguardando "aprovado" do usuário.
-- **Arquivos:** `producoes/ozonio-10-minutos/roteiro.md`, `scene-plan.ts`, `production-status.md`.
-- **Preferências:** voz edge-tts `pt-BR-AntonioNeural` (+8 %), nada pago; render no PC Windows do usuário
-  (`C:\Users\not\Desktop\videos\ozonio-10-minutos\`), reaproveitando `node_modules` e o pipeline do vídeo da TV.
-- **Pendências após aprovação:** mundo 3D (praia em corte, coluna de céu, raios UV, planeta, pele/DNA, olho,
-  casa, hospital), overlays 2D (relógio, régua, dose, ícones, gráfico), TTS, efeitos e trilha, stills, render.
+- **Fase atual:** FASE 2 EM ANDAMENTO — projeto enviado ao PC; aguardando o 1-PREPARAR (narração, efeitos, trilha, stills).
+- **Roteiro:** v1, aprovado pelo usuário em 2026-11-05 13:30 ("aprovado").
+- **Projeto:** `producoes/ozonio-10-minutos/video/` = `C:\Users\not\Desktop\videos\ozonio-10-minutos\`.
+- **Ajustes técnicos sem mudança de conteúdo:** distâncias de câmera do planeta (d≈75–85), da pele (d=15) e do olho (d=8,5)
+  para caberem no quadro; órbita do planeta até o lado da noite (az 100°); "UV-B/UV-C/DNA" enviados ao TTS por extenso.
+- **Verificado até aqui:** sintaxe (esbuild), identificadores (tsc com shims), integridade das 15 cenas (soma 2700), efeitos rodam.
+- **Pendências:** TTS → cortes pela voz; tsc no PC; stills e folhas de contato; render; loudnorm; ffprobe.
