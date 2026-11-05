@@ -83,7 +83,7 @@ const GanchoOverlay: React.FC<SceneProps> = ({ scene }) => {
 // ---------------------------------------------------------------- rótulos simples
 const FosforoOverlay: React.FC<SceneProps> = ({ scene }) => {
   const { local, frame } = useFrames(scene);
-  return <Label frame={frame} local={local} dur={scene.durationInFrames} point={POINTS.phosphor} text="FÓSFORO" appear={track("phosphor.reveal", frame)} offset={[-170, -230]} />;
+  return <Label frame={frame} local={local} dur={scene.durationInFrames} point={POINTS.phosphor} text="FÓSFORO" appear={track("phosphor.reveal", frame)} offset={[150, -230]} />;
 };
 
 const CanhaoOverlay: React.FC<SceneProps> = ({ scene }) => {
@@ -138,9 +138,9 @@ const GradeOverlay: React.FC<SceneProps> = ({ scene }) => {
   const pose = cameraPoseAt(frame);
   return (
     <>
-      <Label frame={frame} local={local} dur={scene.durationInFrames} point={POINTS.grid} text="GRADE" appear={track("label.grid", frame) * (1 - progress(local, W("s10", 11), W("s10", 12)))} offset={[-120, -230]} accent={PALETTE.signal} />
-      <WorldLabel pose={pose} point={POINTS.screenSky} text={"+ ELÉTRONS\nCLARO"} appear={tags * outFade(local, scene.durationInFrames)} offset={[-60, -300]} accent={PALETTE.warning} size={30} />
-      <WorldLabel pose={pose} point={POINTS.screenHill} text={"− ELÉTRONS\nESCURO"} appear={pop(local, FPS, W("s10", 14)) * outFade(local, scene.durationInFrames)} offset={[60, 300]} accent="#9aa7b4" size={30} />
+      <Label frame={frame} local={local} dur={scene.durationInFrames} point={POINTS.grid} text="GRADE" appear={track("label.grid", frame) * (1 - progress(local, W("s10", 9), W("s10", 10)))} offset={[-120, -230]} accent={PALETTE.signal} />
+      <WorldLabel pose={pose} point={POINTS.screenSky} text={"+ ELÉTRONS\nCLARO"} appear={tags * outFade(local, scene.durationInFrames)} offset={[-330, 40]} accent={PALETTE.warning} size={30} />
+      <WorldLabel pose={pose} point={POINTS.screenHill} text={"− ELÉTRONS\nESCURO"} appear={pop(local, FPS, W("s10", 14)) * outFade(local, scene.durationInFrames)} offset={[300, 60]} accent="#9aa7b4" size={30} />
     </>
   );
 };
@@ -242,12 +242,12 @@ const MascaraOverlay: React.FC<SceneProps> = ({ scene }) => {
 
 // ---------------------------------------------------------------- 15. rótulos finais
 const FINAL_LABELS: { p: Vec3; text: string; off: [number, number]; accent: string }[] = [
-  { p: POINTS.cathode, text: "CÁTODO", off: [-40, 200], accent: PALETTE.cathodeHot },
-  { p: POINTS.grid, text: "GRADE", off: [-60, -190], accent: PALETTE.signal },
-  { p: POINTS.yoke, text: "BOBINAS", off: [40, -230], accent: PALETTE.copper },
-  { p: POINTS.anode, text: "ÂNODO", off: [60, -200], accent: PALETTE.cable },
-  { p: [0.4, 1.3, -0.25], text: "MÁSCARA", off: [140, -170], accent: PALETTE.metal },
-  { p: [-0.5, -1.3, -0.07], text: "FÓSFORO", off: [80, 200], accent: PALETTE.accent },
+  { p: POINTS.cathode, text: "CÁTODO", off: [90, 190], accent: PALETTE.cathodeHot },
+  { p: POINTS.grid, text: "GRADE", off: [170, -90], accent: PALETTE.signal },
+  { p: POINTS.yoke, text: "BOBINAS", off: [140, -250], accent: PALETTE.copper },
+  { p: POINTS.anode, text: "ÂNODO", off: [-30, -330], accent: PALETTE.cable },
+  { p: [0.4, 1.3, -0.25], text: "MÁSCARA", off: [-200, -200], accent: PALETTE.metal },
+  { p: [-0.5, -1.3, -0.07], text: "FÓSFORO", off: [-60, 210], accent: PALETTE.accent },
 ];
 
 const ConclusaoOverlay: React.FC<SceneProps> = ({ scene }) => {

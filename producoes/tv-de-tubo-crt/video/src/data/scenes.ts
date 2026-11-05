@@ -65,7 +65,7 @@ const P = {
   roomOpen: orbit([0, -0.2, 0], 20, 8, 4),            // TV desligada, de frente, quase preenchendo o quadro
   tvFront: orbit([0, -0.3, -1], 30, 18, 8),           // TV inteira na sala
   tvSide: orbit([0, -0.3, -3.2], 40, 62, 16),         // TV em corte, tubo inteiro
-  screenInner: orbit([0.8, 0.5, -0.1], 4.5, 55, 12),  // borda da tela: vidro + fósforo
+  screenInner: orbit([0.8, 0.4, -0.6], 7, 112, 14),   // por dentro do tubo: face interna do fósforo
   tubeAll: orbit([0, 0, -3.2], 34, 72, 16),           // do canhão à tela
   gunClose: orbit([0, 0, -5.9], 6.5, 75, 12),         // canhão no fundo do gargalo
   neckMid: orbit([0, 0, -4.6], 14, 80, 14),           // gargalo + começo do funil
@@ -75,13 +75,13 @@ const P = {
   behind: orbit([0, 0, -1.8], 30, 150, 12),           // por trás: leque do feixe até a tela
   screenWide: orbit([0, 0, 0], 19, 10, 4),
   triadClose: orbit([0.6, 0.4, -0.05], 1.6, 10, 5),   // pontinhos RGB
-  maskClose: orbit([0.6, 0.4, -0.15], 3.4, 70, 10),   // máscara + fósforo de lado
+  maskClose: orbit([0.6, 0.4, -0.15], 1.7, 145, 18),  // por trás: máscara na frente do fósforo
   final: orbit([0, -0.2, -3], 38, 45, 18),
 };
 // Poses de passagem (fim de uma cena = início da próxima)
 const C = {
   c1: orbit([0, -0.3, -3.2], 39, 68, 17),
-  c2: orbit([0.8, 0.5, -0.1], 4, 45, 9),
+  c2: orbit([0.8, 0.4, -0.6], 6.4, 104, 12),
   c3: orbit([0, 0, -5.9], 6, 85, 10),
   c4: orbit([0, 0, -5.3], 12.5, 100, 14),
   c5: orbit([0, 0, -3.2], 33, 70, 15),
@@ -349,6 +349,7 @@ export const scenes: ScenePlan[] = [
       lin("counter.lines", W("s11", 8), W("s11", 13), 0, 525, "out", "px"),
       lin("interlace.show", W("s11", 14) - 4, W("s11", 15) + 8, 0, 1, "out"), // ímpares (amarelo) depois pares (ciano), em loop
       lin("counter.fields", W("s11", 14), W("s11", 17), 0, 60, "out", "px"),
+      lin("interlace.show", end(10) - 14, end(10), 1, 0, "in"),
     ],
     badges: [{ text: "PAL-M", subtitle: "525 linhas · 60 campos/s, entrelaçado", variant: "info", appearAt: W("s11", 7), disappearAt: end(10) - 4 }],
     highlights: ["PONTO", "RÁPIDO", "BRASIL", "LINHAS", "SESSENTA", "MEIAS-TELAS", "SEGUNDO"],
@@ -408,7 +409,7 @@ export const scenes: ScenePlan[] = [
     durationInFrames: sc(13).durationInFrames,
     voKey: "s14",
     narration: "Só que um feixe acertaria a cor errada. Então uma máscara furada faz cada um acertar só a sua.",
-    camera: { projection: "perspective", movement: "tracking", keys: [key(0, C.c13), key(s(1.3), P.maskClose, "soft"), key(W("s14", 15), orbit([0.6, 0.4, -0.15], 3.6, 60, 12), "linear"), key(end(13) - 20, orbit([0, 0, 0], 19.5, 12, 4), "soft"), key(end(13), C.c14, "linear")] },
+    camera: { projection: "perspective", movement: "tracking", keys: [key(0, C.c13), key(s(1.3), P.maskClose, "soft"), key(W("s14", 15), orbit([0.6, 0.4, -0.15], 1.85, 135, 20), "linear"), key(end(13) - 20, orbit([0, 0, 0], 19.5, 12, 4), "soft"), key(end(13), C.c14, "linear")] },
     objects: [...tube(), o("anode", "anodo-alta-tensao", "energizado"), o("yoke", "bobinas-de-deflexao", "instaladas"), o("triads", "fosforo-rgb"), o("gun", "canhao-de-eletrons", "3 cátodos"), o("beam", "feixe", "3 feixes"), o("mask", "mascara-de-sombra", "ausente", "instalada"), o("labels", "rotulos-3d")],
     animations: [
       lin("wrongHit.show", W("s14", 4) - 4, W("s14", 7) + 6, 0, 1, "out"),   // feixe "vermelho" acende ponto verde + ✖
@@ -442,7 +443,7 @@ export const scenes: ScenePlan[] = [
       spr("final.labels", W("s15", 0), 0, 1, 12),  // CÁTODO, GRADE, ÂNODO, BOBINAS, MÁSCARA, FÓSFORO — 4 f entre cada
       lin("fade", end(14) - 18, end(14), 0, 1, "in"),
     ],
-    badges: [{ text: "TUBO DE RAIOS CATÓDICOS", subtitle: "CRT · esquema simplificado", variant: "info", size: "large", appearAt: W("s15", 9), disappearAt: end(14) }],
+    badges: [{ text: "TUBO DE RAIOS CATÓDICOS", subtitle: "CRT · esquema simplificado", variant: "info", appearAt: W("s15", 9), disappearAt: end(14) }],
     highlights: ["PRONTO", "TV", "TUBO", "DESENHA", "IMAGEM"],
     captions: [cap("s15", "Pronto: agora você sabe como a TV de tubo desenha cada imagem.", end(14) - 18)],
     audioCues: [narration("s15", HAS_VO ? "ready" : "planned"), sfx("whoosh-soft", 0, 0.24), sfx("pop", W("s15", 0) + 4, 0.18), sfx("badge-final", W("s15", 9), 0.32)],

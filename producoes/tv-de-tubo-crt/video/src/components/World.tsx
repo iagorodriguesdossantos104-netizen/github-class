@@ -262,6 +262,17 @@ const paintScreen = (cv: ScreenCanvases, frame: number) => {
     });
   }
 
+  // escurece a imagem enquanto os pontinhos RGB estão em close
+  if (isVisible("triads", frame)) {
+    const dim = clamp(track("triads.show", frame), 0, 1) * (1 - clamp(track("screen.color", frame), 0, 1));
+    if (dim > 0.001) {
+      ctx.globalAlpha = 0.75 * dim;
+      ctx.fillStyle = "#0b1014";
+      ctx.fillRect(0, 0, TEX_W, TEX_H);
+      ctx.globalAlpha = 1;
+    }
+  }
+
   // entrelaçamento: linhas ímpares (amarelo) e pares (ciano) alternando
   const il = clamp(track("interlace.show", frame), 0, 1);
   if (il > 0.001) {
@@ -302,7 +313,9 @@ const Glass: React.FC<{ opacity?: number }> = ({ opacity = 0.16 }) => (
   <meshStandardMaterial color={PALETTE.glass} transparent opacity={opacity} roughness={0.15} metalness={0} side={DoubleSide} depthWrite={false} />
 );
 
-const fade = (o: number) => ({ transparent: o < 0.999, opacity: o, depthWrite: o >= 0.999 });
+// Sempre transparent: trocar `transparent` depois da 1ª compilação não recompila o shader no render
+// contínuo (renderMedia), e o objeto ficaria opaco. A opacidade e o depthWrite podem variar livremente.
+const fade = (o: number) => ({ transparent: true, opacity: o, depthWrite: o >= 0.999 });
 
 // ------------------------------------------------------------------ sala
 const Room: React.FC<{ frame: number }> = ({ frame }) => {
@@ -459,10 +472,10 @@ const Tube: React.FC<{ frame: number; cv: ScreenCanvases }> = ({ frame, cv }) =>
     () =>
       new CatmullRomCurve3([
         new Vector3(...POINTS.anode),
-        new Vector3(0, POINTS.anode[1] + 0.5, -2.5),
-        new Vector3(0.7, 1.6, -4.2),
-        new Vector3(1.5, 0.6, -5.6),
-        new Vector3(1.6, -0.2, -5.9),
+        new Vector3(0, POINTS.anode[1] + 0.45, -2.6),
+        new Vector3(-0.4, 1.9, -4.6),
+        new Vector3(-0.9, 1.7, -6.9),
+        new Vector3(-1.6, -0.2, -7.15),
       ]),
     [],
   );
@@ -471,7 +484,7 @@ const Tube: React.FC<{ frame: number; cv: ScreenCanvases }> = ({ frame, cv }) =>
       {/* tela: fósforo (textura animada) + vidro frontal */}
       <mesh position={[0, 0, PHOSPHOR_Z]}>
         <planeGeometry args={[SCREEN_W, SCREEN_H]} />
-        <meshBasicMaterial map={cv.texture} toneMapped={false} />
+        <meshBasicMaterial map={cv.texture} toneMapped={false} side={DoubleSide} />
       </mesh>
       <mesh position={[0, 0, 0]}>
         <boxGeometry args={[SCREEN_W + 0.5, SCREEN_H + 0.4, 0.12]} />
@@ -503,7 +516,7 @@ const Tube: React.FC<{ frame: number; cv: ScreenCanvases }> = ({ frame, cv }) =>
         </mesh>
         <mesh position={[0, 0, coatZ]} rotation={[Math.PI / 2, 0, 0]}>
           <cylinderGeometry args={[funnelR(-0.6) * 0.96, funnelR(-0.6 - coatLen) * 0.96, coatLen, 20, 1, true]} />
-          <meshStandardMaterial color={PALETTE.coating} emissive="#2f7df6" emissiveIntensity={anode * (0.55 + 0.25 * pulse(frame, 24))} transparent opacity={0.28 + 0.2 * anode} side={DoubleSide} depthWrite={false} {...MATTE} />
+          <meshStandardMaterial color={PALETTE.coating} emissive="#2f7df6" emissiveIntensity={anode * (0.35 + 0.2 * pulse(frame, 24))} transparent opacity={0.1 + 0.22 * anode} side={DoubleSide} depthWrite={false} {...MATTE} />
         </mesh>
       </group>
       {/* gargalo, soquete e ponta de selagem */}
@@ -534,7 +547,7 @@ const Tube: React.FC<{ frame: number; cv: ScreenCanvases }> = ({ frame, cv }) =>
         <tubeGeometry args={[cable, 40, 0.05, 6, false]} />
         <meshStandardMaterial color={PALETTE.cable} emissive={PALETTE.cable} emissiveIntensity={anode * (0.5 + 0.4 * pulse(frame, 18))} {...MATTE} />
       </mesh>
-      <mesh position={[1.6, -0.6, -5.9]} castShadow>
+      <mesh position={[-1.6, -0.7, -7.0]} castShadow>
         <boxGeometry args={[0.8, 0.9, 0.7]} />
         <meshStandardMaterial color="#24262b" {...MATTE} />
       </mesh>
@@ -805,7 +818,7 @@ const Signal: React.FC<{ frame: number }> = ({ frame }) => {
   const amp = clamp(track("signal.amp", frame), 0, 1);
   const pts = Array.from({ length: 40 }, (_, i) => {
     const t = i / 39;
-    const base = new Vector3(lerp(1.4, 0.24, t), lerp(-1.1, -0.05, Math.min(1, t * 1.3)), lerp(-7.0, -5.95, t));
+    const base = new Vector3(lerp(-1.4, -0.24, t), lerp(-1.1, -0.05, Math.min(1, t * 1.3)), lerp(-7.0, -5.95, t));
     const w = Math.sin(t * 22 - frame * 0.5) * (0.04 + 0.08 * amp);
     return base.add(new Vector3(0, w, 0));
   });
@@ -842,7 +855,9 @@ const CH_COLORS = [new Color(PALETTE.red), new Color(PALETTE.green), new Color(P
 const Triads: React.FC<{ frame: number }> = ({ frame }) => {
   const ref = useRef<InstancedMesh>(null);
   const show = isVisible("triads", frame) ? clamp(track("triads.show", frame), 0, 1) : 0;
-  const fadeOut = 1 - clamp(track("screen.color", frame), 0, 1);
+  const sc14 = sceneAt(frame);
+  const leaving = sc14.id === "scene-14-mascara" ? clamp((frame - sc14.startFrame - (sc14.durationInFrames - 46)) / 12, 0, 1) : 0;
+  const fadeOut = (1 - clamp(track("screen.color", frame), 0, 1)) * (1 - leaving);
   const thr = [0.02, 0.4, 0.8];
   useLayoutEffect(() => {
     const m = ref.current;
@@ -865,7 +880,7 @@ const Triads: React.FC<{ frame: number }> = ({ frame }) => {
   return (
     <instancedMesh ref={ref} args={[undefined, undefined, TRIADS.length]}>
       <circleGeometry args={[0.0105, 10]} />
-      <meshBasicMaterial toneMapped={false} />
+      <meshBasicMaterial toneMapped={false} side={DoubleSide} />
     </instancedMesh>
   );
 };
@@ -931,7 +946,7 @@ const Convergence: React.FC<{ frame: number }> = ({ frame }) => {
             <Segment a={src} b={usingMask ? hole : target} radius={0.006} color={BEAM_COLORS[i]} opacity={vis} />
             {usingMask ? <Segment a={hole} b={target} radius={0.006} color={BEAM_COLORS[i]} opacity={vis} /> : null}
             <mesh position={target}>
-              <sphereGeometry args={[0.016 * (0.6 + 0.8 * lit), 10, 8]} />
+              <sphereGeometry args={[0.02 * (0.6 + 0.8 * lit), 10, 8]} />
               <meshBasicMaterial color={!usingMask && i === 0 ? PALETTE.green : BEAM_COLORS[i]} transparent opacity={vis * (0.3 + 0.7 * lit)} toneMapped={false} blending={AdditiveBlending} depthWrite={false} />
             </mesh>
           </group>
