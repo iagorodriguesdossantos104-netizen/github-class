@@ -6,7 +6,7 @@
 import { bundle } from "@remotion/bundler";
 import { getCompositions, renderMedia, renderStill } from "@remotion/renderer";
 import { execFileSync } from "node:child_process";
-import { appendFileSync, mkdirSync, writeFileSync } from "node:fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { cpus } from "node:os";
 import path from "node:path";
 
@@ -66,11 +66,17 @@ try {
   } else {
     const outDir = path.resolve("out/stills");
     mkdirSync(outDir, { recursive: true });
-    for (const fr of args) {
-      const frame = Math.min(composition.durationInFrames - 1, fr);
-      const output = path.join(outDir, `f${String(frame).padStart(4, "0")}.png`);
-      await renderStill({ serveUrl, composition, frame, output, scale: Number(process.env.SCALE ?? 0.5), port, chromiumOptions });
-      console.log(output);
+    // logs/comp.txt (ex.: "TvThumb,TvThumbWide") troca as composições e renderiza em escala 1 (thumbnails)
+    const extra = existsSync("logs/comp.txt") ? readFileSync("logs/comp.txt", "utf8").trim() : "";
+    const targets = extra ? extra.split(",").map((id) => comps.find((c) => c.id === id.trim())).filter(Boolean) : [composition];
+    for (const comp of targets) {
+      for (const fr of args) {
+        const frame = Math.min(comp.durationInFrames - 1, fr);
+        const name = extra ? `${comp.id}-f${String(frame).padStart(4, "0")}.png` : `f${String(frame).padStart(4, "0")}.png`;
+        const output = path.join(outDir, name);
+        await renderStill({ serveUrl, composition: comp, frame, output, scale: extra ? 1 : Number(process.env.SCALE ?? 0.5), port, chromiumOptions });
+        console.log(output);
+      }
     }
   }
 } catch (e) {

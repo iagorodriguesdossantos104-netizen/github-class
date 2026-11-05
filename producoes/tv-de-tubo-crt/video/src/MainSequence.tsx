@@ -27,7 +27,10 @@ const DimLighting: React.FC = () => {
   return <Lighting dim={track("sky.dark", frame)} />;
 };
 
-export const MainSequence: React.FC = () => {
+/** `ui: false` tira legendas, badges, rótulos, fade e áudio (composições de thumbnail). */
+export type MainProps = { ui?: boolean };
+
+export const MainSequence: React.FC<MainProps> = ({ ui = true }) => {
   const { width, height } = useVideoConfig();
   return (
     <AbsoluteFill style={{ backgroundColor: "#0e2036" }}>
@@ -45,19 +48,21 @@ export const MainSequence: React.FC = () => {
           ) : null;
         })}
       </ThreeCanvas>
-      {scenes.map((sc) => {
-        const Overlay = MODULES[sc.id]?.Overlay;
-        return (
-          <Sequence key={sc.id} name={sc.id} from={sc.startFrame} durationInFrames={sc.durationInFrames}>
-            {Overlay ? <Overlay scene={sc} /> : null}
-            <BadgeLayer badges={sc.badges} />
-          </Sequence>
-        );
-      })}
-      <GlobalOverlay />
-      <AnimatedCaptions />
-      <FadeOut />
-      <Soundtrack />
+      {ui
+        ? scenes.map((sc) => {
+            const Overlay = MODULES[sc.id]?.Overlay;
+            return (
+              <Sequence key={sc.id} name={sc.id} from={sc.startFrame} durationInFrames={sc.durationInFrames}>
+                {Overlay ? <Overlay scene={sc} /> : null}
+                <BadgeLayer badges={sc.badges} />
+              </Sequence>
+            );
+          })
+        : null}
+      {ui ? <GlobalOverlay /> : null}
+      {ui ? <AnimatedCaptions /> : null}
+      {ui ? <FadeOut /> : null}
+      {ui ? <Soundtrack /> : null}
     </AbsoluteFill>
   );
 };
