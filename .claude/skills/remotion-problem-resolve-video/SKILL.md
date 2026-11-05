@@ -16,6 +16,7 @@ Esta skill une um método narrativo (problema → solução) a um pipeline técn
 | --- | --- | --- |
 | `references/scene-plan-contract.md` | Contrato TypeScript `VideoConfig`/`ScenePlan` e como a tabela vira dados | Fase 1, seção 3 |
 | `references/pipeline-fase2.md` | Passo a passo da produção, comandos, enquadramento, áudio, render, armadilhas | Início da Fase 2 |
+| `references/pc-windows.md` | Fase 2 rodando no PC Windows do usuário (sessão na nuvem sem npm/pip/GPU): scripts, pedidos por arquivo, armadilhas | Quando não der para renderizar aqui |
 | `references/diorama-3d.md` | Técnicas 3D: corte transversal, rasgo no plano de corte, partículas, tubos, tela dividida | Ao construir o cenário |
 | `references/remotion/INDEX.md` | Regras oficiais do Remotion (3D, sequências, áudio, fontes, legendas, render, Studio, busca na doc) | Sempre que usar uma API do Remotion |
 | `assets/template/` | Motor reutilizável: câmera orbital por chaves, trilhas de animação, badges, legendas, rótulos 3D, áudio | Copiar para `src/` na Fase 2 |
@@ -202,7 +203,8 @@ não recrie silenciosamente outro roteiro. Não refaça a Fase 1 só porque houv
 
 Após a aprovação, siga até entregar o vídeo final; não pare em código, storyboard ou instruções para o
 usuário renderizar. **Leia `references/pipeline-fase2.md` antes de começar** — ele tem os comandos, o
-enquadramento e as armadilhas já resolvidas. Resumo do caminho:
+enquadramento e as armadilhas já resolvidas. Se este ambiente não consegue instalar pacotes ou renderizar
+(npm/pip bloqueados, sem GPU) e há um computador do usuário ligado, siga `references/pc-windows.md`. Resumo do caminho:
 
 1. **Projeto.** Reutilize um projeto Remotion compatível ou crie um isolado
    (`npx create-video@latest --yes --blank --no-tailwind <pasta>`), instale `@remotion/three`,
